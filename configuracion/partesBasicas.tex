@@ -1,0 +1,44 @@
+\newenvironment{dedication}
+{
+\pagestyle{empty}
+  \vspace*{6.5cm}
+  {\chapter*{Dedicatoria}} 
+\addcontentsline{toc}{chapter}{Dedicatoria}
+ {\large{}}
+  \vspace{0.5cm}
+ \begin{flushright}
+\itshape}
+{\end{flushright}
+%\clearpage
+}
+\newenvironment{acknowledgements}
+{\pagestyle{empty}
+\vspace*{1.5cm}
+{\chapter*{Agradecimientos}}
+\addcontentsline{toc}{chapter}{Reconocimientos}
+\vspace{0.5cm}}
+
+%{}
+
+%ABSTRACT - SPANISH
+%
+%The abstract environment puts a large, bold, centered "Abstract" label at
+%the top of the page. The abstract itself appears in a quote environment,
+%i.e. tabbed in at both sides, and on its own page.
+
+ \newenvironment{abstract} {
+	\pagestyle{empty}
+	\begin{center}
+		\vspace*{1.5cm}
+		{\chapter*{Resumen}}
+		\addcontentsline{toc}{chapter}{Resumen}
+	\end{center}
+	\vspace{0.5cm}} 
+ 
+
+
+
+\titleformat{\chapter}[display]   
+{\normalfont\Large\bfseries}{\chaptertitlename\ \thechapter}{12pt}{\Large}   
+\titlespacing*{\chapter}{0pt}{-10pt}{0pt}
+

@@ -1,0 +1,24 @@
+A continuación, se presenta el código fuente de cada archivo de las secciones detalladas anteriormente en el módulo de preprocesamiento de comentarios:
+
+Limpieza de Datos
+
+En la sección de limpieza de datos se almacenan dos archivos. El código fuente \ref{lst:c1} corresponde al archivo limpiar\_datos.py, donde se puede observar la implementación de la limpieza de datos extraídos de las redes sociales, se usaron expresiones regulares en la implementación de cada función. 
+
+
+\lstinputlisting[language=Python,firstline=7,caption=Codigo fuente limpieza de datos,label={lst:c1}]{capitulo5/codigo/limpiar_datos.py}
+
+
+El código fuente \ref{lst:c2} corresponde al archivo corrector\_lenguaje.py, que se encarga de la limpieza general de un conjunto de datos. Esto incluye la eliminación de URLs, caracteres especiales, números, entre otros elementos, utilizando la biblioteca re de Python.
+
+\lstinputlisting[language=Python,firstline=7,caption=Codigo fuente limpieza de URLs,label={lst:c2}]{capitulo5/codigo/corrector_lenguaje.py}
+
+Formato y Encadenamiento de Información
+
+La segunda y última sección de este módulo también almacena dos archivos y se enfoca en el tratamiento de archivos y formatos. En el código fuente \ref{lst:c3} se puede observar la implementación del archivo manejo\_archivos.py, que se encarga de crear, modificar, eliminar, y gestionar archivos en distintos formatos.
+
+\lstinputlisting[language=Python,firstline=7,caption=Codigo fuente limpieza archivos y formatos,label={lst:c3}]{capitulo5/codigo/manejo_archivos.py}
+
+En el código fuente \ref{lst:c4} se puede observar la implementación del último archivo de esta sección, convertir\_formato.py. Este archivo se encarga de recorrer múltiples archivos para compactar la información y realizar su conversión posterior. Además, se lleva a cabo el registro de cada archivo utilizado y de cada proceso realizado con ellos.
+
+\lstinputlisting[language=Python,firstline=7,caption=Codigo fuente compactacion de informacion,label={lst:c4}]{capitulo5/codigo/convertir_formato.py}
+

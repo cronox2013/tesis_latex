@@ -1,0 +1,43 @@
+%ESTA ES LA CUBIERTA
+	\thispagestyle{empty} % no imprimir ni número, ni cabecera ni pié de página
+	
+	%
+	% Usa \tb para colocar varios items en la página. Uso:
+	%
+	% \tb{w}{h}{v}{t}
+	%
+	% donde:
+	%
+	% w = ancho de la caja con el texto (1.0 = ancho de página)
+	% h = posición horizontal del centro de la caja de texto (0.0 = izquierda, 1.0 = derecha)
+	% v = posición vertical del centro de la caja de texto (0.0 = arriba, 1.0 = abajo)
+	% t = texto a incluir en la caja de texto
+	%
+
+\tb{0.9}{0.16}{0.12}{\includegraphics[width=0.16\columnwidth]{\logoUMSS}}
+\tb{0.9}{0.84}{0.12}{\includegraphics[width=0.14\columnwidth]{\logoFCYT}}
+\tb{0.8}{0.50}{0.1}{\Large \textsc{\universidad}}
+\tb{0.8}{0.50}{0.125}{\ftitulo\textsc{\facultad}}
+\tb{0.8}{0.50}{0.145}{\fnormal\textsc{\carrera}}
+\tb{0.75}{0.50}{0.40}{\myHuge\textsc{\titulo}}
+
+	
+\tb{0.65}{0.55}{0.58}{
+%	\begin{justify}
+	\fnormal{\paraGrado}
+%\end{justify}
+}
+
+
+\tb{0.3}{0.22}{0.70}{\fnormal{\textbf{ELABORADO POR: }}}
+\tb{0.7}{0.58}{0.7}{\fnormal{ \autor}}
+\tb{0.3}{0.22}{0.750}{\normalsize\textbf{TUTOR: }}
+\tb{0.7}{0.58}{0.75}{\fnormal{ \tutor}}
+
+\tb{0.8}{0.50}{0.85}{{\fnormal{COCHABAMBA - BOLIVIA}}}
+\tb{0.8}{0.50}{0.88}{\fnormal{ENERO - 2024}}
+\clearpage 
+
+
+%%\includepdf[pages=1]{actaOtros/ejemploActa.pdf}
+%%\includepdf[pages=1]{actaOtros/constanciaOriginalidad.pdf}

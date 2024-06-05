@@ -1,0 +1,27 @@
+La regularización es una técnica utilizada en el aprendizaje automático para reducir el overfitting (sobreajuste) en modelos de machine learning, especialmente en modelos que son propensos a ajustarse demasiado a los datos de entrenamiento.
+El objetivo principal de la regularización es agregar cierta penalización a la función de coste o pérdida del modelo para desalentar la complejidad excesiva y, en su lugar, promover modelos más simples que puedan generalizar mejor a datos no vistos. A continuación se detallara  métodos de regularización comunes:
+
+\begin{itemize}
+	\item L1 (Regularización Lasso): Esta técnica es una versión regularizada de la regresión lineal, se agrega el término de penalización a la función de coste, mismo que  es equivalente a la suma de los valores absolutos de los pesos. Esto puede llevar a algunos pesos a volverse exactamente cero, lo que puede ser útil para la selección automática de características. ``Una característica importante de Lasso Regression es que tiende a eliminar completamente los pesos de las características menos importantes (es decir, establecerlos en cero).''\cite[p. 140]{geron2019hands}. En la ecuación \ref{eq:e14} se observa  El MSE regularizado con L1.
+	
+	\item L2 (Regularización Ridge): Esta técnica, tiene el efecto de reducir la magnitud de los coeficientes de los parámetros, penalizando los valores grandes y favoreciendo coeficientes más pequeños. Esto ayuda a prevenir el sobreajuste al evitar que los coeficientes crezcan demasiado para adaptarse únicamente a los datos de entrenamiento, es equivalente a la suma de los cuadrados de los pesos. Esto evita que los pesos tomen valores extremadamente grandes y, por lo tanto, controla la complejidad del modelo. ``La regresión de cresta (también llamada regularización de Tikhonov) es una versión regularizada de la regresión lineal: se agrega un término de regularización igual a $ \alpha\sum_{i=1}^{n}  \theta_i^2$ a la función de costo.''\cite[p. 137]{geron2019hands}. En la ecuación \ref{eq:e15} se observa  El MSE regularizado con L2
+	
+\begin{equation} \label{eq:e14} 
+	J(\theta) = \text{MSE}(\theta) + \alpha\sum_{i=1}^{n} \left |  \theta_i \right |
+\end{equation}
+
+\begin{equation} \label{eq:e15} 
+	J(\theta) = \text{MSE}(\theta) + \alpha\frac{1}{2}\sum_{i=1}^{n} \theta_i^2 
+\end{equation}									
+				
+Donde: 
+		
+		$\alpha $: Es el hiperparámetro de regularización, es decir controla cuánto se desea regularizar el modelo.\\
+		$\sum_{i=1}^{n} \left |  \theta_i \right | $:  es la suma de los valores absolutos de los de los parámetros del modelo.\\
+		$\sum_{i=1}^{n} \theta_i^2 $: es la suma de los cuadrados de los parámetros del modelo.\\
+		
+	\item Dropout: Durante el entrenamiento, aleatoriamente se ``apaga'' (ignora) un conjunto de unidades/neuronas, lo que fuerza a la red a aprender de manera más robusta al evitar la dependencia excesiva de ciertas neuronas.
+	
+	\item Early Stopping:  La técnica de parada anticipada(early stopping) detiene el entrenamiento de la red antes de que empiece a sobreajustarse. Se basa en monitorear la precisión en un conjunto de validación y detener el entrenamiento cuando la precisión en este conjunto deja de mejorar. ``Una forma muy diferente de regularizar algoritmos de aprendizaje iterativo como Gradient Descent es detener el entrenamiento tan pronto como el error de validación alcance un mínimo. A esto se le llama parada anticipada.''\cite[p. 142]{geron2019hands}.
+	
+\end{itemize}

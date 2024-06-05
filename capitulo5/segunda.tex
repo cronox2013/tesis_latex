@@ -1,0 +1,32 @@
+En esta iteración se realizaron cambios en la arquitectura de la red convolucional base, principalmente en la cantidad de capas de convolución y el pool\_stride. Los resultados obtenidos por los modelos se detallan en la tabla algo 4, y los detalles de la arquitectura base utilizada para cada modelo se encuentran en la tabla algo 5.
+
+------------------------
+
+tabla algo 5
+
+------------------------
+
+Todos los modelos propuestos comparten esta arquitectura base con métodos de regularización adicionales:
+
+\begin{itemize}
+
+\item Modelo cnn\_dp\_four: Incluye dropout al 30\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia.
+
+\item Modelo cnn\_dp\_four\_f: Incluye dropout al 40\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia.
+
+\item Modelo cnn\_dp\_four\_fi: Incluye dropout al 50\% después de cada capa convolucional y después de la capa densa intermedia.
+
+\item Modelo cnn\_bndp\_four\_f: Incluye dropout al 40\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia, más batch normalization en cada capa convolucional y en la capa densa intermedia.
+
+\item Modelo cnn\_bndp\_four\_fi: Incluye dropout al 50\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia, más batch normalization en cada capa convolucional y en la capa densa intermedia.
+
+\item Modelo cnn\_bndp\_four\_ss: Incluye dropout al 60\% después de cada capa convolucional y después de la capa densa intermedia, más batch normalization en cada capa convolucional y en la capa densa intermedia.
+
+\end{itemize}
+----------------------------
+
+tabla algo 4
+
+---------------------------
+
+Los resultados no mostraron una mejora significativa en la precisión ni en la pérdida, por lo que se consideró innecesario desarrollar modelos más profundos. En su lugar, se decidió trabajar con un modelo menos profundo.

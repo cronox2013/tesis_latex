@@ -1,0 +1,39 @@
+La adquisición de datos en el Procesamiento del Lenguaje Natural (PLN) es un primer paso crucial en el desarrollo de cualquier sistema de procesamiento de texto.
+
+Comprende la obtención de datos relevantes que se utilizarán para entrenar modelos, realizar pruebas y validar algoritmos en un contexto específico. Estos datos pueden provenir de diversas fuentes, como documentos escritos, transcripciones de audio, redes sociales, páginas web, entre otros.
+
+Esta etapa implica la identificación de las fuentes de datos disponibles y la posterior obtención  de información en función de las necesidades del proyecto. La calidad, cantidad y diversidad de los datos adquiridos son factores cruciales para el rendimiento y la precisión de los modelos de PLN.  Las maneras de recolectar y generar información pueden ser las siguientes:
+
+\begin{itemize}
+
+	\item Usar un conjunto de datos (dataset)  público.- En primer lugar, buscar conjuntos de datos públicos que se puedan usar para la tarea que se quiere resolver, es una buena opción. Se pueden encontrar conjuntos de datos recopilados por algunas personas como los de Nicolas Iderhoff en su repositorio de github o mediante motores de búsqueda especializados como el de Google para datasets o kaggle. Sin embargo es muy importante tener en cuenta que a pesar de que se esté tratando con un conjunto de datos listo para usarse, es muy importante considerar el equilibrio, limpieza, utilidad y otras importantes características que debe contener el dataset.
+	
+	\item Raspado de datos (Scrape data).-  Una opción es la recolección de datos relevantes de fuentes en línea, como foros de discusión, plataformas de consumidores, redes sociales, seguido de la anotación humana. Si no se necesita obtener datos con detalles específicos el raspado de datos es una buena pero costosa opción debido al tiempo que debe invertirse para raspar miles y miles de datos.
+
+\end{itemize}
+
+
+\textbf{Aumento de datos}
+
+El PNL ofrece una variedad de técnicas que permiten ampliar un conjunto de datos reducido mediante métodos conocidos como aumento de datos. Estas estrategias buscan aprovechar las propiedades del lenguaje para generar texto adicional que mantenga similitudes con los datos originales. A continuación, se detallara algunas de estas técnicas:
+
+\begin{itemize}
+
+	\item Reemplazo de sinónimos: Consiste en seleccionar aleatoriamente ``k'' palabras en una oración que no sean palabras vacías(a, el, ella, un) y reemplazarlas por sus sinónimos.
+	
+	\item Traducción inversa: Se puede tomar una oración (S1) en español y traducirla a otro idioma, por ejemplo, inglés.  La oración correspondiente en inglés sería (S2). Luego, se traducirá nuevamente S2 al español, obteniendo una nueva oración (S3). Para generar y asegurar un poco más la variedad, también puede ser conveniente usar distintas herramientas de traducción.
+	
+	\item Reemplazo de palabras basado en TF-IDF: La traducción inversa podría perder palabras cruciales, es por eso que se utilizan los pesos TF-IDF para determinar qué palabras son más cruciales en una oración. Aquellas palabras con pesos TF-IDF más altos tienen una contribución más significativa al significado de la oración. Por lo tanto, al generar datos adicionales, se reemplazan las palabras menos importantes con sus sinónimos o palabras similares de acuerdo con sus pesos TF-IDF. Esto permite mantener la esencia semántica de la oración mientras se generan datos adicionales.
+	
+	\item Inversión de bigramas: Se divide la oración en bigramas y se selecciona uno al azar para invertir. Por ejemplo, en ``Voy al supermercado'', se toma el bigrama ``al supermercado'' y se invierte: ``voy''.
+	
+	\item Reemplazo de entidades: Consiste en cambiar entidades como nombres de personas, lugares, organizaciones, etc., por otras en la misma categoría. Por ejemplo, en ``Vivo en Bolivia'', reemplazar ``Bolivia'' por ``Perú''.
+	
+	\item Agregar ruido a los datos: En muchas plataformas los datos entrantes contienen errores ortográficos, como por ejemplo cualquier red social (Twitter, Instagram, Facebook). Para que el modelo pueda lidiar con este problema es importante agregar un poco de ruido a los datos, para que así se permita entrenar un modelo más robusto. Por ejemplo, reemplazar una palabra en una oración por otra similar en ortografía. Otro tipo de ruido proviene de los errores de teclado en dispositivos móviles, donde se simula un error de teclado QWERTY reemplazando algunos caracteres por sus vecinos en el teclado.
+
+	\item Técnicas Avanzadas: En la búsqueda de expandir conjuntos de datos textuales, existen técnicas y sistemas avanzados notables como Snorkel, que sobresale al permitir la generación automatizada de datos de entrenamiento sin requerir etiquetado manual, empleando heurísticas y transformaciones sobre los datos existentes para crear muestras sintéticas de alta calidad. Por otro lado, herramientas como Easy Data Augmentation (EDA) y NLPAug igualmente ofrecen un abanico de técnicas para la ampliación de datos y creación de datos sintéticos.
+	
+	\item Etiquetado de datos: Una ayuda para el etiquetado de miles de datos puede ser el aprendizaje activo. Es un enfoque específico dentro del aprendizaje automático que implica la interacción entre el algoritmo de aprendizaje y un experto humano para etiquetar datos. Se utiliza en situaciones donde hay un gran conjunto de datos sin etiquetar, pero el proceso de etiquetado manual es costoso o consume mucho tiempo. La idea clave radica en determinar qué instancias específicas de datos deberían ser solicitadas para ser etiquetadas, con el objetivo de maximizar el aprendizaje del algoritmo y, al mismo tiempo, minimizar el costo y la cantidad de datos etiquetados requeridos. Es esencial identificar estratégicamente los puntos de datos que pueden proporcionar la mayor información para mejorar el rendimiento del modelo, optimizando así el proceso de etiquetado.
+
+\end{itemize}
+

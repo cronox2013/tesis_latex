@@ -1,0 +1,21 @@
+En esta iteración, se modificó principalmente el valor del dropout, ya que al alterar otros hiperparámetros como el pool\_size, el pool\_stride y el stride de la capa de convolución, el modelo no producía resultados positivos. A continuación, se detallan los resultados de modificar el dropout en el modelo cnnBaseBNDP32T, los cuales se pueden ver en la tabla algo5.
+
+\begin{itemize}
+
+\item Al modelo cnnBaseBNDP32T4 se le aplicó un dropout del 40\% a cada capa convolucional después de aplicar batch normalization y un dropout del 50\% en la capa densa intermedia.
+
+\item Al modelo cnnBaseBNDP32T5 se le aplicó un dropout del 50\% a cada capa convolucional después de aplicar batch normalization, manteniendo el dropout del 50\% en la capa densa intermedia.
+
+\item El modelo cnnBaseBNDP32T6 únicamente modificó el valor del dropout en la capa densa intermedia al 60\%.
+
+\end{itemize}
+
+Las arquitecturas de todos los modelos y los demás hiperparámetros se mantienen como los detallados anteriormente.
+
+----------------------------------
+
+tabla algo 5
+
+------------------------------------
+
+El modelo cnnBaseBNDP32T4 obtuvo los mejores resultados, reduciendo en un punto la pérdida en el conjunto de validación en comparación con el modelo cnnBaseBNDP32T. Sin embargo, al analizar los resultados del modelo cnnBaseBNDP64T detallados en la tabla algo 3, se observa que este presenta una pérdida aún menor que el modelo cnnBaseBNDP32T4. Esto lleva a concluir que modificar el dropout en el modelo no mejorará significativamente su rendimiento.

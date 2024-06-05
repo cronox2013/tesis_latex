@@ -1,0 +1,5 @@
+Las redes neuronales feedforward, presentan una arquitectura donde la información fluye en una dirección única, avanzando desde la capa de entrada a través de una serie de capas ocultas hasta llegar a la capa de salida, sin ciclos ni retroalimentación. Por ejemplo, podemos visualizar este flujo como una sucesión de funciones $f_1(), f_2(), y f_3()$ encadenadas para formar $f(x) = f_3(f_2(f_1(x)))$. Estas estructuras en cadena son las formas más comunes de redes neuronales.
+
+En esta secuencia, $f_1()$ representa la primera capa de la red, $f_2()$ sería la segunda capa, y así sucesivamente. La extensión total de esta cadena determina la profundidad del modelo. Este concepto de profundidad es esencial en la terminología del ``aprendizaje profundo'', un nombre derivado precisamente de esta característica.
+
+Este enfoque, descrito en el libro Deep Learning \cite[p.167]{goodfellow2016deep}, permite representar y procesar datos de manera más compleja, ya que cada capa sucesiva puede aprender y extraer características más abstractas de los datos de entrada, posibilitando así la resolución de problemas complejos.

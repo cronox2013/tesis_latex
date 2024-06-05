@@ -1,0 +1,15 @@
+Al trabajar con redes neuronales, se requiere un procesamiento adicional de los vectores de entrada para adaptarlos a las capas de entrada de la red neuronal. Estos pasos describen la preparación de datos para usarlos como entrada en una arquitectura de red neuronal en el contexto del procesamiento de lenguaje natural. Si bien estos pasos ya se mencionaron anteriormente es importante resaltarlos ya que son fundamentales para preparar datos textuales, debido a que transforman los textos en representaciones numéricas adecuadas que pueden ser entendidas y procesadas por la red neuronal.
+
+\begin{itemize}
+
+	\item Tokenización: Consiste en dividir los textos en unidades más pequeñas, como palabras o subpalabras (tokens).
+	
+	\item Conversión a vectores de índices de palabras: Asigna un número único a cada palabra o token del texto.
+
+	\item Relleno de secuencias de texto para tener la misma longitud: En muchos modelos de redes neuronales, todas las secuencias deben tener la misma longitud. Si las secuencias de texto tienen longitudes diferentes, se pueden rellenar con valores específicos (como 0) para que todas tengan la misma longitud. Por ejemplo, si el máximo de palabras permitidas es 100 y un texto tiene 80 palabras, se pueden agregar 20 valores de relleno al final.
+	
+	\item Asignación de índices de palabras: Cada índice de palabra (número único) se asigna a un vector de incrustación correspondiente. Se multiplican los vectores índice de palabras con la matriz de incrustación para obtener vectores de incrustación asociados a cada palabra en el texto.
+	
+	\item Uso del resultado como entrada: Los vectores de incrustación resultantes, que representan las palabras de los textos y están listos para ser procesados por la red neuronal, se utilizan como la entrada para la arquitectura de la red neuronal.
+
+\end{itemize}

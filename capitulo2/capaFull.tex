@@ -1,0 +1,7 @@
+El uso de capas totalmente conectadas en una CNN no es obligatorio. Depende en gran medida del problema específico y de la arquitectura de la red. Son útiles cuando se necesita combinar y procesar de manera integral las características extraídas por las capas convolucionales y de agrupación para realizar la tarea específica, como la clasificación de imágenes o el procesamiento de texto. Así que después de la extracción de características, se pueden agregar capas densamente conectadas para la clasificación final.
+
+\textbf{Flatten}
+
+La operación de ``flatten'' (aplanado) se refiere a una operación utilizada en redes neuronales para convertir una matriz multidimensional o un tensor en un vector unidimensional. Esta operación toma todas las dimensiones de la entrada y las combina en una única dimensión, conservando todos los elementos pero organizándolos en una única fila.
+Después de pasar por varias capas convolucionales y de agrupación (pooling) en la CNN, por ejemplo, se obtiene una salida en forma de tensor tridimensional o multidimensional. Esta salida generalmente se transforma a una forma plana o un vector unidimensional antes de ser alimentada a capas densamente conectadas o totalmente conectadas, ya que las capas densas requieren una entrada en forma de vector unidimensional, para realizar la clasificación final o tareas similares.
+

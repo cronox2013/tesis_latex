@@ -1,0 +1,110 @@
+El aprendizaje en una red neuronal supervisada se logra a través de su entrenamiento. Como se mencionó previamente, este proceso implica la adaptación de los pesos y sesgos de las conexiones entre las neuronas para permitir al modelo realizar predicciones precisas sobre nuevos datos. Este proceso se divide en varias fases esenciales que pueden agruparse de la siguiente manera:
+
+\textbf{Propagación hacia adelante}
+
+Una vez que se ha definido la arquitectura de una red neuronal con su cantidad de capas, neuronas por capa, y funciones de activación, el siguiente paso es la inicialización de los pesos. Los pesos y sesgos de la red neuronal pueden ser asignados aleatoriamente o con valores predefinidos.
+Lo que sigue es realizar la Propagación hacia Adelante (Forward Propagation) a través de toda la red, este proceso implica el paso de los datos de entrada a través de la red neuronal, capa por capa, desde la capa de entrada hasta la capa de salida, para generar una predicción o salida. Durante esta fase, cada capa de la red neuronal realiza dos operaciones clave:
+
+\begin{itemize}
+	\item Ponderación y Suma: Cada neurona en una capa recibe entradas de todas las neuronas de la capa anterior, multiplicadas por los pesos respectivos. Estos productos se suman junto con el sesgo asociado a la neurona. Esta operación puede representarse como $Z=W\cdot X+b$, donde $Z$ almacena el valor de la suma ponderada.
+	\item Activación: Después de la suma ponderada, se aplica la función de activación determinada para cada capa a la salida resultante . Esta función introduce no linealidad en la red, permitiendo aprender relaciones y patrones complejos en los datos. Si representamos la función de activación como $A()$, hasta este punto, el proceso realizado sería $A(Z)$, es decir, la suma ponderada pasó por la función de activación. ``Esto da como resultado una cascada directa de cálculos entre las capas, utilizando el conjunto actual de pesos. La salida final prevista se puede comparar con la de la instancia de entrenamiento y se calcula la derivada de la función de pérdida con respecto a la salida.''\cite[p.22]{aggarwal2018neural}.
+\end{itemize}
+
+La propagación hacia adelante se utiliza tanto en el entrenamiento como en la predicción de una red neuronal. Durante el entrenamiento, se utiliza para generar predicciones con los datos de entrenamiento y calcular la pérdida, que luego se utiliza en el proceso de retropropagación para ajustar los pesos y mejorar las predicciones. En la predicción o evaluación de nuevos datos, la red simplemente realiza la propagación hacia adelante para generar predicciones sin actualizar los pesos de la red.
+
+
+\textbf{Propagación hacia atrás}
+
+La retropropagación (backpropagation) en el entrenamiento de redes neuronales ajusta tanto los pesos como los sesgos. Durante el proceso de retropropagación, se calculan los gradientes de la función de coste respecto a todos los pesos y sesgos en la red.
+
+Estos gradientes (derivadas parciales) indican la dirección y la magnitud en la que se debe ajustar cada peso y cada sesgo para minimizar la función de coste. Posteriormente, se utilizan estos gradientes en algoritmos de optimización, como el descenso del gradiente, para actualizar tanto los pesos como los sesgos en la red con el objetivo de mejorar el rendimiento del modelo. Para esto debemos tomar en cuenta los siguientes procedimientos y cálculos a realizar:
+
+\begin{itemize}
+	\item Pérdida
+	
+Una vez que se realiza la primera fase de entrenamiento, obtendremos  la salida correspondiente de la red neuronal, se procederá a calcular la pérdida. La pérdida se calcula con la función de coste, también conocida como función de pérdida, es una métrica que cuantifica qué tan bien está realizando un modelo de aprendizaje automático sus predicciones, al compararlas con las salidas reales o etiquetas conocidas en un conjunto de datos de entrenamiento. 
+	\item Función de coste
+	
+La función de coste, representada como $(C())$, evalúa la discrepancia entre las predicciones del modelo y las salidas esperadas. Esta métrica genera un único valor numérico que indica qué tan distantes se encuentran las predicciones del modelo respecto a las salidas reales. El objetivo primordial es minimizar esta función de coste durante el proceso de entrenamiento con el fin de mejorar las predicciones del modelo.
+	
+Diversas funciones de coste se emplean según el tipo de problema que se enfrenta. Por ejemplo, en problemas de regresión se utilizan funciones de coste comunes como el error cuadrático medio (mean squared error), el error absoluto medio, el error cuadrático medio logarítmico, entre otros. Para problemas de clasificación, se recurre a la función de pérdida bisagra (hinge loss) en modelos como SVM, y la pérdida focal (focal loss), diseñada para abordar desequilibrios en la distribución de clases.
+
+La selección de la función de coste siempre está ligada al tipo de salida y al problema específico que se está abordando. En todos los casos, existen funciones de coste diseñadas para adaptarse y optimizarse según las necesidades particulares. Por ejemplo, la entropía cruzada suma sobre todas las clases y evalúa la discrepancia entre las distribuciones de probabilidad reales y las predichas para cada clase.
+El término $log(y_{i})$ dentro de la entropía cruzada penaliza de manera significativa las predicciones incorrectas o poco confiables. Esta penalización aumenta conforme la predicción se aleja más del valor real. Ver ecuación \ref{eq:e8}
+
+\begin{equation} \label{eq:e8} 
+	L(y,{y}')=-\displaystyle\sum_{i=1}^{n}y_{i}log(y_{i}')
+\end{equation}
+
+
+$\sum_{i=1}^{n} =$ sumatoria de todos los valores\\
+$y_{i} =$ etiqueta real para la clase i\\
+$y_{i}' =$ predicción del modelo para la clase i\\
+
+Esta función de coste se emplea principalmente en problemas de clasificación, abarcando variantes como la entropía cruzada binaria (Binary Cross-Entropy) y la entropía cruzada categórica (Categorical Cross-Entropy).
+
+	\item Vector gradiente
+	
+	
+El siguiente paso implica encontrar las derivadas parciales de todos los parámetros $(w, b)$ de la red neuronal en relación con la función de coste. Este proceso permitirá optimizar la red neuronal utilizando el algoritmo del descenso del gradiente. Para ello, se debe calcular el vector gradiente, el cual consta de las derivadas del costo respecto al peso $\frac{\partial C}{\partial W}$ y las derivadas del costo respecto al sesgo $\frac{\partial C}{\partial b}$.
+
+Hasta este punto, la suma ponderada de cada neurona ha pasado por su respectiva función de activación y finalmente por la función de coste seleccionada, expresada como $C(A(Z))$. Este proceso, donde el resultado de una función se pasa por otra y luego por otra más, se conoce como composición de funciones. Para calcular la derivada de una composición de funciones, se emplea la regla de la cadena (chain rule). Esta regla indica que para encontrar la derivada de una composición de funciones, simplemente se multiplican las derivadas intermedias de cada una. Por ejemplo:
+
+Se tiene dos funciones : $x= h(a) , y= j(c)$
+
+Si existe una relación entre $x$ y $c$ (por ejemplo, $x=2c$), se crea una composición de funciones $x=h(j(c))$, donde $x$ depende de $c$ a través de la función $j$ y luego de $h$.
+La regla de la cadena establece que si se tiene una composición de funciones como $x=h(j(c))$, su derivada $\frac{dx}{dc}$ se calcula multiplicando las derivadas de cada función individual.
+Es decir, esta derivada es el producto de las derivadas de cada función individual: $\frac{dx}{dc} = \frac{dx}{da} \cdot \frac{da}{dc}$
+
+Por lo tanto hallar la derivada del peso respecto al costo y la derivada del bias respecto al costo de la última capa de la red neuronal equivale a las ecuaciones \ref{eq:e9} y \ref{eq:e10}.
+\begin{equation} \label{eq:e9} 
+	\frac{\partial C}{\partial W^L}=\frac{\partial C}{\partial A^L}\cdot \frac{\partial A^L }{\partial Z^L}\cdot \frac{\partial Z^L }{\partial W^L}
+\end{equation}
+
+\begin{equation} \label{eq:e10} 
+	\frac{\partial C}{\partial b^L}=\frac{\partial C}{\partial A^L}\cdot \frac{\partial A^L }{\partial Z^L}\cdot \frac{\partial Z^L }{\partial b^L}
+\end{equation}
+
+$\frac{\partial C}{\partial W^L} $.- Representa la derivada parcial de la función de coste C respecto a un peso específico W. Esta derivada indica cómo cambia la función de coste C cuando se modifica un peso particular W en la red.
+
+$\frac{\partial C}{\partial A^L} $.- Es la derivada parcial del coste  respecto a la activación , indica cómo cambia la función de costo C en función de los cambios en la activación A en la última capa L de la red neuronal.
+
+$\frac{\partial A^L }{\partial Z^L} $.- Representa la derivada parcial de la activación A respecto a la suma ponderada Z. Indica cómo pequeños cambios en la suma ponderada Z afectarán la activación A.
+
+$\frac{\partial Z^L }{\partial W^L} $.- Representa la derivada parcial de la suma ponderada Z respecto a un peso particular W, indica como la suma ponderada Z, cambia con respecto a cada peso específico W.
+
+$\frac{\partial C}{\partial b^L} $.- Representa la derivada parcial de la función de coste C respecto al sesgo b. Esta derivada indica cómo cambia la función de coste C cuando se modifica el sesgo b en la red.
+
+$\frac{\partial Z^L }{\partial b^L} $.- Representa la derivada parcial de la suma ponderada Z respecto al sesgo b indica cómo pequeños cambios en el sesgo b afectarán la suma ponderada Z. Sin embargo, es importante tener en cuenta que, la derivada de Z respecto a b generalmente es 1, ya que el sesgo se suma directamente a la suma ponderada Z sin multiplicaciones adicionales.
+
+El cálculo que se realizó hasta ahora es aplicable solamente para la última capa de la red neuronal. La ecuación \ref{eq:e11} y la ecuación \ref{eq:e12} representan las derivadas parciales para la capa $L-1$, es decir la penúltima capa. Estas ecuaciones también son aplicables para todas las capas anteriores. En esta caso  importante notar que las derivadas del coste respecto a la activación $\partial  A^L$  y la derivada de la activación respecto a la suma ponderada  $\frac{\partial  A^L}{\partial  Z^L}$ ya calculadas en la última capa, serán reutilizadas.  Este proceso se repetirá hasta terminar con el cálculo hacia atrás de todas las capas.
+\begin{equation} \label{eq:e11} 
+	\frac{\partial C}{\partial W^{L-1}}=\frac{\partial C}{\partial A^L}\cdot \frac{\partial A^L }{\partial Z^L}\cdot \frac{\partial Z^L }{\partial A^{L-1}}\cdot \frac{\partial A^{L-1} }{\partial Z^{L-1}}\cdot \frac{\partial Z^{L-1}}{\partial W^{L-1}}
+\end{equation}
+
+\begin{equation} \label{eq:e12} 
+	\frac{\partial C}{\partial b^{L-1}}=\frac{\partial C}{\partial A^L}\cdot \frac{\partial A^L }{\partial Z^L}\cdot \frac{\partial Z^L }{\partial A^{L-1}}\cdot \frac{\partial A^{L-1} }{\partial Z^{L-1}}\cdot \frac{\partial Z^{L-1}}{\partial b^{L-1}}
+\end{equation}
+
+
+	\item Descenso del gradiente
+	
+El descenso del gradiente es un algoritmo de optimización cuyo objetivo principal es encontrar el mínimo de una función de coste o pérdida. La idea detrás del descenso del gradiente es iterativamente actualizar los parámetros del modelo (pesos y sesgos ) en la dirección y la magnitud que reduce gradualmente la función de coste. Esto se logra siguiendo el vector del gradiente de la función de coste con respecto a esos parámetros. El gradiente indica la dirección hacia el máximo crecimiento de la función de coste; por lo tanto, avanzar en dirección opuesta al gradiente nos lleva hacia un mínimo local (o global) de la función no convexa. La actualización de los parámetros $\theta$ (pesos, sesgos, etc.) se realiza utilizando la fórmula que se muestra en la ecuación \ref{eq:e13}.
+\begin{equation} \label{eq:e13} 
+	\theta = \theta - \alpha \cdot\triangledown J(\theta)
+\end{equation}
+
+
+Donde:
+
+$\theta$ son los parámetros del modelo.
+
+$\alpha$  es la tasa de aprendizaje (learning rate), es un valor pequeño que controla la velocidad a la que se actualizan los parámetros.
+
+$\triangledown J(\theta)$  es el gradiente de la función de coste.
+
+El proceso implica utilizar el gradiente de la función de coste con respecto a cada parámetro, y luego ajustar los parámetros en pequeños pasos proporcionales a este gradiente multiplicado por una tasa de aprendizaje (learning rate). Esta tasa de aprendizaje determina la longitud de cada paso que damos hacia el mínimo.
+
+El descenso del gradiente puede tener diferentes variantes, como el descenso del gradiente estocástico (SGD), el descenso del gradiente por lotes (Batch Gradient Descent), el descenso del gradiente en lotes pequeños (Mini Batch Gradient Descent), entre otros, que varían en la cantidad de datos utilizados para cada actualización de los parámetros y la manera en que se actualizan estos parámetros.
+
+\end{itemize}

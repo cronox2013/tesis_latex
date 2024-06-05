@@ -1,0 +1,50 @@
+La función de activación es una función matemática no lineal que recibe las entradas procesadas de la neurona, se encarga de distorsionar el valor de salida, añadiendo valores no lineales. Ya que la neurona realiza generalmente una suma ponderada de sus entradas y esto puede asemejarse en esencia a un modelo lineal, para tratar problemas que no son solamente lineales se necesitan modelos más complejos, por lo tanto este es el propósito de una función de activación. ``Por ejemplo, si la variable objetivo que se va a predecir es real, entonces tiene sentido utilizar la función de activación de identidad y el algoritmo resultante es el mismo que el de la regresión de mínimos cuadrados.'' \cite[p. 11]{aggarwal2018neural}. Las funciones de activación más comúnmente utilizadas se detallan a continuación:
+
+
+Función identidad: Es una función lineal que conserva el valor de entrada como salida, es la función más básica ya que no proporciona no linealidad:  Ver ecuación \ref{eq:e2}
+
+\begin{equation} \label{eq:e2} 
+	f(x) = x 
+\end{equation}
+
+
+	
+Función sigmoide: Esta función tiene una forma de ``S'' y transforma la entrada a un rango de valores entre 0 y 1, esta característica facilita la interpretación como probabilidades, se alinea bien con modelos de máxima verosimilitud y permite la construcción de funciones de pérdida adecuadas para problemas de clasificación. Ver ecuación \ref{eq:e3}
+
+\begin{equation} \label{eq:e3} 
+	sigmoide(t)=\frac{1}{1+e^{-t}}
+\end{equation}
+
+ 
+	
+	
+Función tangente hiperbólica: Similar a la función sigmoide, pero tiene un rango entre -1 y 1. Es preferible a la sigmoide cuando se desea que los resultados de los cálculos sean tanto positivos como negativos. Su fórmula directa se puede observar en la ecuación \ref{eq:e4}.
+ 
+
+\begin{equation} \label{eq:e4} 
+tanh(x) = \frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}
+\end{equation}
+	
+Función tangente hiperbólica dura: La función ``hard tanh'' es una variante de la función tangente hiperbólica (tanh) que ha sido modificada para producir salidas en un rango limitado y discretizado, manteniendo las propiedades no lineales de la función tanh original pero restringiendo su rango de salida.
+La función ``hard tanh'' es similar a la función tangente hiperbólica estándar, pero en lugar de proporcionar salidas en el rango continuo entre -1 y 1, aplica un límite a los valores de salida.
+
+\begin{equation} \label{eq:e5} 
+	hardTanh(x)=max(min(x,1), -1)
+\end{equation}
+
+	
+	
+Función ReLu: La función rectificada lineal se comporta de manera constante cuando el valor de z es menor a cero, o como una función lineal cuando el valor de z es mayor o igual a cero. ver ecuación \ref{eq:e6}
+
+\begin{equation} \label{eq:e6} 
+	relu(z)=max(0,z)
+\end{equation}
+
+
+Función softmax: Esta función transforma las salidas a una representación en forma de probabilidades, de tal manera que el sumatorio de todas las probabilidades de las salidas de uno. ver ecuación \ref{eq:e7}
+\begin{equation} \label{eq:e7} 
+	softmax(z_{j})=\frac{e^{z_{j}}}{\displaystyle\sum_{k=1}^{K}e^{z_{k}}}
+\end{equation}
+
+
+
