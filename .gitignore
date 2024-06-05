@@ -1,0 +1,21 @@
+# Ignorar archivos de compilación de LaTeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.fdb_latexmk
+*.lof
+*.log
+*.lot
+*.out
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+
+# Ignorar archivos PDF generados
+*.pdf
+
+# Ignorar carpetas específicas (si tienes algunas específicas que no quieres incluir)
+# Puedes añadir aquí nombres de carpetas específicas que deseas ignorar
