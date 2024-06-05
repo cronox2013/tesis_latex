@@ -6,44 +6,51 @@ La carpeta entrenarmodelos almacena los siguientes archivos:
 
 \begin{itemize}
 
-\item creando\_dataset.py: Se encarga de la división de los conjuntos de datos en subconjuntos para el entrenamiento, la validación y la prueba, asegurando que cada una de las tres clases esté representada de la mejor manera para el entrenamiento de los modelos. También permite la visualización del estado del conjunto de datos, como el tamaño de secuencias y la bolsa de palabras. Ver figura 7.
+\item creando\_dataset.py: Se encarga de la división de los conjuntos de datos en subconjuntos para el entrenamiento, la validación y la prueba, asegurando que cada una de las tres clases esté representada de la mejor manera para el entrenamiento de los modelos. También permite la visualización del estado del conjunto de datos, como el tamaño de secuencias y la bolsa de palabras. Ver figura \ref{fig:uml7}.
 
-------------------------------------------------
-figura 7
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/fig7.png}
+	\caption{Clase creando\_dataset}
+	\floatfoot{Fuente: Elaboración propia, generado con PlantUML}
+	\label{fig:uml7}
+\end{figure}
 
---------------------------------------------------
+\item preparar\_datos.py: Recibe el conjunto de datos en formato .CSV mismo que contiene comentarios textuales y sus etiquetas correspondientes. Convierte estos datos a listas para realizar procesos de tokenización, padding, carga de embeddings y procesamiento de embeddings, después de establecer los hiperparametros necesarios como el tamaño máximo de secuencia, el número máximo de palabras y la dimensión de los embeddings, además se crean métodos para el armado de la capa de embedding, compilación, entrenamiento, evaluación y graficación de los modelos Ver figura \ref{fig:uml8}.
 
-\item preparar\_datos.py: Recibe el conjunto de datos en formato .CSV mismo que contiene comentarios textuales y sus etiquetas correspondientes. Convierte estos datos a listas para realizar procesos de tokenización, padding, carga de embeddings y procesamiento de embeddings, después de establecer los hiperparametros necesarios como el tamaño máximo de secuencia, el número máximo de palabras y la dimensión de los embeddings, además se crean métodos para el armado de la capa de embedding, compilación, entrenamiento, evaluación y graficación de los modelos Ver figura 8.
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/fig8.png}
+	\caption{Clase preparar\_datos}
+	\floatfoot{Fuente: Elaboración propia, generado con PlantUML}
+	\label{fig:uml8}
+\end{figure}
 
-----------------------------------------------
+\item cnn\_tres.py: Crea los modelos de redes convolucionales propuestos con una arquitectura base de tres capas. Ver figura \ref{fig:uml9}.
 
-figura 8
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/fig9.png}
+	\caption{Clase cnn\_tres}
+	\floatfoot{Fuente: Elaboración propia, generado con PlantUML}
+	\label{fig:uml9}
+\end{figure}
 
-----------------------------------------------
+\item cnn\_four.py: Crea los modelos de redes convolucionales propuestos con una arquitectura base de cuatro capas. Ver figura \ref{fig:uml10}.
 
-\item cnn\_tres.py: Crea los modelos de redes convolucionales propuestos con una arquitectura base de tres capas. Ver figura 9.
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/fig10.png}
+	\caption{Clase cnn\_cuatro}
+	\floatfoot{Fuente: Elaboración propia, generado con PlantUML}
+	\label{fig:uml10}
+\end{figure}
 
----------------------------------------------
+\item cnn\_dos.py: Crea los modelos de redes convolucionales propuestos con una arquitectura base de dos capas. Ver figura \ref{fig:uml11}.
 
-figura 9
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/fig11.png}
+	\caption{Clase cnn\_dos}
+	\floatfoot{Fuente: Elaboración propia, generado con PlantUML}
+	\label{fig:uml11}
+\end{figure}
 
----------------------------------------------
-
-\item cnn\_four.py: Crea los modelos de redes convolucionales propuestos con una arquitectura base de cuatro capas. Ver figura 10.
-
-------------------------------------------
-
-figura 10
-
-------------------------------------------
-
-\item cnn\_dos.py: Crea los modelos de redes convolucionales propuestos con una arquitectura base de dos capas. Ver figura 11.
-
-----------------------------------------
-
-figura 11
-
----------------------------------------
 \end{itemize}
 
 Para la carga de embeddings, se utilizó la versión paga de Colab, debido a la necesidad de usar una mayor capacidad de memoria RAM. Las dimensiones de las estructuras utilizadas para la entrada y salida de las capas de embedding, capas de convolución, capas de max-pooling, etc., se detallarán más adelante.

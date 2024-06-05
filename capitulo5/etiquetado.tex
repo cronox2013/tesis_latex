@@ -6,21 +6,23 @@ La carpeta etiquetadodatos almacena los siguientes archivos:
 
 \begin{itemize}
 
-\item operacion\_dataset.py: Este archivo se encarga de diversas operaciones necesarias para el entrenamiento del modelo BERT, como la mezcla de datos, el conteo de clases y la división de conjuntos de datos. Para más detalles, consulte la figura 5.
+\item operacion\_dataset.py: Este archivo se encarga de diversas operaciones necesarias para el entrenamiento del modelo BERT, como la mezcla de datos, el conteo de clases y la división de conjuntos de datos. Para más detalles, consulte la figura \ref{fig:uml5}.
 
-------------------------------------------
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/fig5.png}
+	\caption{Clase operacion\_dataset}
+	\floatfoot{Fuente: Elaboración propia, generado con PlantUML}
+	\label{fig:uml5}
+\end{figure}
 
-figura 5
+\item bert\_multi.py: Este archivo se ocupa de la creación, configuración, entrenamiento y predicción, entre otras tareas específicas del modelo BERT. Para más detalles, consulte la figura \ref{fig:uml6}.
 
------------------------------------------
-
-\item bert\_multi.py: Este archivo se ocupa de la creación, configuración, entrenamiento y predicción, entre otras tareas específicas del modelo BERT. Para más detalles, consulte la figura 6.
-
----------------------------------------
-
-figura 6
-
---------------------------------------
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/fig6.png}
+	\caption{Clase bert\_multi}
+	\floatfoot{Fuente: Elaboración propia, generado con PlantUML}
+	\label{fig:uml6}
+\end{figure}
 
 \end{itemize}
 
