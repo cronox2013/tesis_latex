@@ -2,11 +2,6 @@ Modelo Base
 
 En la primera iteración de las pruebas, se utilizó una red convolucional 1D con tres capas de convolución, dos capas de maxpooling, una capa de globalmaxpooling y dos capas densas. Esta arquitectura se puede observar con más detalle en la figura 5.2. Los hiperparámetros base, como el numero de filtros, tamaño del stride, pool\_size, etc., se especifican en la tabla \ref{tbl:5}.
 
------------------------------------------------------
-
-figura 5.2
-
----------------------------------------------------
 
 \begin{table}[!ht]
 	\centering
@@ -25,19 +20,21 @@ figura 5.2
 	\label{tbl:5}
 \end{table}
   
-En los resultados detallados en la figura algo1, se observa que el modelo sufre de sobreajuste. La precisión en el conjunto de entrenamiento aumenta constantemente a medida que avanzan las épocas, mientras que la precisión en el conjunto de validación disminuye. En la figura algo2, se muestra que el error en el conjunto de validación crece con el tiempo, mientras que el error en el conjunto de entrenamiento disminuye. Los resultados específicos se presentan en la tabla \ref{tbl:6}. Estos indicios sugieren la necesidad de utilizar técnicas de regularización para mitigar el sobreajuste.
+En los resultados detallados en la figura \ref{fig:exactitud}, se observa que el modelo sufre de sobreajuste. La precisión en el conjunto de entrenamiento aumenta constantemente a medida que avanzan las épocas, mientras que la precisión en el conjunto de validación disminuye. En la figura \ref{fig:perdida}, se muestra que el error en el conjunto de validación crece con el tiempo, mientras que el error en el conjunto de entrenamiento disminuye. Los resultados específicos se presentan en la tabla \ref{tbl:6}. Estos indicios sugieren la necesidad de utilizar técnicas de regularización para mitigar el sobreajuste.
 
----------------------------------------
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/exactitud.png}
+	\caption{Exacitud a lo largo de las epocas}
+	\floatfoot{Fuente: Elaboración propia, generado con matplotlib}
+	\label{fig:exactitud}
+\end{figure}
 
-figura algo 1
-
---------------------------------------
-
-------------------------------------
-
-figura algo 2
-
----------------------------------
+\begin{figure}
+	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/perdida.png}
+	\caption{Perdida a lo largo de las epocas}
+	\floatfoot{Fuente: Elaboración propia, generado con matplotlib}
+	\label{fig:perdida}
+\end{figure}
 
 \begin{table}[!ht]
 	\centering
@@ -102,4 +99,4 @@ En los resultados detallados en la tabla \ref{tbl:7}, se observa que los método
 	\label{tbl:8}
 \end{table}
 
-Los resultados obtenidos en la tabla algo \ref{tbl;8} demuestran que, sin importar la época, el error en el conjunto de validación no sobrepasará 1.0 y siempre se mantendrá por debajo de ese rango. La precisión en el conjunto de validación se mantendrá siempre por encima de 0.75, siendo la mejor métrica de 0.78, obtenida por el modelo cnn\_base\_bndp\_32t, superando en 2 puntos la precisión del modelo base. Sin embargo, el modelo cnn\_base\_bndp\_64t fue el que obtuvo la menor pérdida.
+Los resultados obtenidos en la tabla algo \ref{tbl:8} demuestran que, sin importar la época, el error en el conjunto de validación no sobrepasará 1.0 y siempre se mantendrá por debajo de ese rango. La precisión en el conjunto de validación se mantendrá siempre por encima de 0.75, siendo la mejor métrica de 0.78, obtenida por el modelo cnn\_base\_bndp\_32t, superando en 2 puntos la precisión del modelo base. Sin embargo, el modelo cnn\_base\_bndp\_64t fue el que obtuvo la menor pérdida.
