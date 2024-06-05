@@ -1,0 +1,39 @@
+Los hiperparámetros utilizados se pueden dividir en dos categorías. En la primera se encuentran los hiperparámetros constantes, que no se modificaron durante ni después de las pruebas, esta sección se enfocara en estos hiperparámetros. Respecto a la segunda categoria donde se trata a los hiperparámetros que se modificaron durante las pruebas se detallarán al momento de describir los modelos y sus resultados.
+
+En la tabla \ref{tbl:3} se pueden observar los hiperparámetros utilizados para la capa de embedding en cada uno de los modelos convolucionales propuestos.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Hiperparametro} & \textbf{Valor} \\ \hline
+		max\_sequence\_length & 150 \\ \hline
+		max\_num\_words  & 40000 \\ \hline
+		embedding\_dim  & 300 \\ \hline
+		num\_words & 30270 \\ \hline
+		embedding\_matrix & 30270 x 300 \\ \hline
+		trainable & False \\ \hline
+	\end{tabular}
+	\caption{Detalle Hiperparametros y valores usados para la capa de embedding}
+	\label{tbl:3}
+\end{table}
+
+Para las capas restantes, como las capas de convolución, se detallan los hiperparámetros constantes en la tabla \ref{tbl:4}.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Hiperparametro } & \textbf{Valor} \\ \hline
+		Optimizador & 'rmsprop' \\ \hline
+		Batch\_size & 128 \\ \hline
+		Epoca & 150 \\ \hline
+		funcion\_activacion en capas convolucionales & 'relu' \\ \hline
+		funcion\_activacion en capa densa intermedia & 'relu' \\ \hline
+		funcion\_activacion en capa densa de salida & 'softmax' \\ \hline
+	\end{tabular}
+	\caption{Detalle Hiperparametros y valores usados para las capas restantes}
+	\label{tbl:4}
+\end{table}
+
+

@@ -1,0 +1,35 @@
+Se detallarán dos conceptos muy importantes que se deben tener en cuenta al momento de examinar el rendimiento de un modelo de aprendizaje automático
+
+\textbf{Sobreajuste}
+
+El sobreajuste (overfitting) es un fenómeno en el aprendizaje automático donde un modelo se ajusta demasiado a los datos de entrenamiento. Esto significa que el modelo aprende no solo los patrones generales presentes en los datos, sino también el ruido o las particularidades específicas de esos datos de entrenamiento. Como resultado, el modelo puede tener un excelente rendimiento en los datos utilizados para entrenarlo pero se desempeña mal al enfrentarse a nuevos datos (conjunto de datos de validación o prueba) que no ha visto antes. Las causas comunes de overfitting incluyen:
+
+\begin{itemize}
+
+	\item Modelo demasiado complejo: Un modelo con una capacidad muy alta puede memorizar los datos de entrenamiento en lugar de aprender patrones generales, lo que conduce a un rendimiento deficiente en datos no vistos.
+	
+	\item Falta de datos: Cuando hay pocos datos disponibles para el entrenamiento, es más probable que el modelo memorice el ruido presente en esos pocos datos en lugar de aprender patrones generales. .``Esta situación es casi similar al aprendizaje de memoria, que es altamente predictivo para los datos de entrenamiento pero no predictivo para los datos de prueba no vistos''\cite[p. 25]{aggarwal2018neural}.
+	
+	\item Entrenamiento excesivo: Realizar demasiadas iteraciones o épocas de entrenamiento puede llevar a que el modelo se ajuste demasiado a los datos de entrenamiento, perdiendo la capacidad de generalizar.
+
+\end{itemize}
+
+Para evitar el overfitting, se pueden utilizar técnicas como la regularización (como L1, L2), validación cruzada, reducción de la complejidad del modelo, aumentó de datos, entre otras estrategias.``Una buena regla general es que la cantidad total de puntos de datos de entrenamiento debe ser al menos 2 o 3 veces mayor que la cantidad de parámetros en la red neuronal, aunque la cantidad precisa de instancias de datos depende del modelo específico en cuestión.''\cite[p. 25]{aggarwal2018neural}. Estas técnicas están diseñadas para reducir la capacidad del modelo de ajustarse excesivamente a los datos de entrenamiento y mejorar su capacidad para generalizar a datos no vistos.
+
+\textbf{Subajuste}
+
+El subajuste (underfitting) es un problema en el aprendizaje automático que ocurre cuando un modelo es demasiado simple para capturar la complejidad de los datos. En este caso, el modelo no puede aprender adecuadamente los patrones presentes en los datos de entrenamiento ni en los datos nuevos. Las causas comunes de underfitting incluyen:
+
+\begin{itemize}
+
+	\item Modelo demasiado simple o poca capacidad: Un modelo simple, con pocos parámetros o capas, puede no ser lo suficientemente flexible como para capturar la complejidad de los datos.
+	
+	\item Falta de características relevantes: Si el conjunto de datos carece de características informativas o si se eliminan características importantes durante el preprocesamiento, el modelo puede ser incapaz de aprender los patrones relevantes.
+	
+	\item Entrenamiento insuficiente: No entrenar el modelo durante suficientes iteraciones o épocas puede conducir a que el modelo no logre ajustarse adecuadamente a los datos.
+	
+\end{itemize}
+
+Para abordar el underfitting, se pueden utilizar estrategias como aumentar la complejidad del modelo (añadiendo capas, neuronas, etc.), ajustar los hiperparámetros, mejorar la calidad de los datos o incluso modificar el enfoque del problema. Estas estrategias buscan proporcionar al modelo la capacidad necesaria para aprender patrones más complejos y, por lo tanto, mejorar su rendimiento en los datos de entrenamiento y en la generalización a nuevos datos.
+
+	

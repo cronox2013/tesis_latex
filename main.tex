@@ -1,0 +1,42 @@
+\documentclass[letterpaper,12pt, twoside, openright]{book}%
+
+\input{configuracion/config}
+\input{configuracion/rename}
+\input{configuracion/partesBasicas}
+%\input{configuracion/glosarios}
+
+\pagestyle{plain}
+\renewcommand{\headrulewidth}{0pt} % Elimina la línea de encabezado
+
+\begin{document}
+
+\renewcommand{\listtablename}{Índice de Tablas}
+\renewcommand{\tablename}{Tabla}
+\pagenumbering{roman}
+\input{configuracion/cubierta}
+\fnormal
+\input{preliminares/agradecimientos}
+\input{preliminares/tablasContenidos}
+\input{preliminares/resumen}
+\mainmatter
+\pagestyle{plain}
+
+\input{capitulo1/capitulo1}
+\input{capitulo2/capitulo2}
+\input{capitulo3/capitulo3}
+\input{capitulo4/capitulo4}
+\input{capitulo5/capitulo5}
+%\input{capitulo6/capitulo6}
+%\input{capitulo7/capitulo7}
+
+\backmatter
+
+\renewcommand{\bibname}{Bibliografía} 
+
+\bibliography{bibliografia/biblio.bib}
+\bibliographystyle{apacite}
+\clearpage
+\appendix
+\addcontentsline{toc}{section}{Apéndice}
+\input{apendices/apendices}
+\end{document}

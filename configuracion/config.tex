@@ -1,0 +1,196 @@
+%%PREAMBULO SE RECOMIENDA NO MODIFICAR SOLO AGREGAR PAQUETES QUE NECESITEN\
+\usepackage[justified]{ragged2e}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{graphicx}
+%%Paquetes que siempre se usan
+\usepackage[utf8]{inputenc}  
+\usepackage[spanish]{babel}
+
+\usepackage{csquotes}
+\usepackage{color}
+\usepackage[table]{xcolor}
+% Paquete para la definición de nuevas colores
+%\usepackage{xcolor}
+
+\definecolor{cyan-keyword}{rgb}{0.0, 0.6, 0.8}
+\definecolor{cyan-string}{rgb}{0.2, 0.6, 0.2}
+\definecolor{cyan-comment}{rgb}{0.4, 0.4, 0.4}
+\definecolor{cyan-function}{rgb}{0.0, 0.2, 0.4}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{miColorMuyClaro}{rgb}{0.9716, 0.9941, 0.9886}
+\definecolor{orange}{rgb}{1.0, 0.95, 0.9}
+
+\usepackage{listings}
+\lstset{
+	literate={á}{{\'a}}1
+	{é}{{\'e}}1
+	{í}{{\'i}}1
+	{ó}{{\'o}}1
+	{ú}{{\'u}}1
+	{ñ}{{\~n}}1
+	{Ñ}{{\~N}}1
+	{Á}{{\'A}}1
+	{É}{{\'E}}1
+	{Í}{{\'I}}1
+	{Ó}{{\'O}}1
+	{Ú}{{\'U}}1
+	{·}{{$\cdot$}}1
+	{ }{{$\cdot$}}1
+}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{miColorMuyClaro},   
+	commentstyle=\color{cyan-comment},
+	keywordstyle=\bfseries\color{cyan-keyword},
+	identifierstyle=\color{cyan-function},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{cyan-string},
+	basicstyle=\ttfamily\small,
+	lineskip=2pt, 
+	columns=flexible,     
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\renewcommand{\lstlistlistingname}{Índice de Códigos Fuentes}
+\renewcommand{\lstlistingname}{Código Fuente}
+\lstset{style=mystyle}
+
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{epigraph}
+\setlength\epigraphwidth{.8\textwidth}
+\usepackage{lettrine}
+\definecolor{lightblue}{rgb}{0.03,0.22,0.93}
+\usepackage{tabularray}
+%%notas para figura
+\usepackage[capposition=bottom]{floatrow}
+\usepackage{caption}
+
+% Configuración para centrar la leyenda debajo de la imagen
+\floatsetup[figure]{capposition=bottom, justification=centering}
+
+
+
+
+\usepackage[absolute]{textpos} 
+\setlength{\TPHorizModule}{\paperwidth}
+\setlength{\TPVertModule}{\paperheight}
+\newcommand{\tb}[4]{\begin{textblock}{#1}[0.5,0.5](#2,#3)\begin{center}#4\end{center}\end{textblock}}
+%%%fijandoMargenes
+\usepackage{geometry}
+\geometry
+{paperheight=279mm,%
+paperwidth=215mm,%
+top=20mm,%
+left=30mm,%
+right=20mm,%
+bottom=20mm,%
+headsep=7.5mm,%
+footskip=10mm,%
+textheight=217mm,%
+textwidth=150mm,%
+bindingoffset=10mm,}
+%%%%%
+\usepackage{mathptmx}
+\usepackage{newtxtext,newtxmath}
+\usepackage[shortlabels]{enumitem}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage{pdfpages}
+\usepackage{lipsum}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{rotating}
+\usepackage[export]{adjustbox}  %para justificar figuras
+\usepackage{listings}  % PERMITE AGREGAR CÓDIGO DE LENGUAJES  DE PROGRAMACIÓN (DOCUMENTACIÓN EN GOOGLE)
+\usepackage{emptypage}  % QUITA LOS ENCABEZADOS Y PIES DE PÁGINA EN LAS HOJAS VACÍAS PRODUCIDAS POR LA IMPRESIÓN A DOS CARAS
+\usepackage{wrapfig}  % to include figure with text wrapping around it
+\usepackage[margin=0pt,font=small,labelfont=bf]{caption}  % for improved layout of figure captions with extra margin, smaller font than text
+%\usepackage[bf,SL,BF]{subfigure}  % Permite crear figuras múltiples
+\usepackage{makeidx}  % Contiene los macros para indexar en un sario
+%\usepackage[style=list,toc,number=none]{glossary}
+\usepackage[refpages]{gloss} % para generar glosario a partir de una extension .bib
+\usepackage{tabularx}
+\usepackage{booktabs}      % para hacer tablas con: \midrule \toprule \bottomrule
+\usepackage{multirow}      % para hacer tablas con: \multirow
+\usepackage{mathdots}      % para el comando \iddots
+\usepackage{mathrsfs}      % para formato de letra en ecuaciones
+\raggedbottom              %Evita que LaTeX distribuya los espacios en blanco sobre la página, en lugar de eso los envía al fondo
+\usepackage{fancyhdr}      % for better header layout
+\usepackage{eucal}
+\usepackage{float}
+\usepackage{longtable} 
+\usepackage{color, colortbl}
+
+\usepackage[perpage]{footmisc}
+\usepackage{ifthen}
+\usepackage{multicol}       % for pages with multiple text columns, e.g. References 
+\setlength{\columnsep}{10pt} % space between columns; default 10pt quite narrow
+\usepackage[nottoc]{tocbibind} % correct page numbers for bib in TOC, nottoc suppresses an entry for TOC itself
+\usepackage{nextpage}
+\usepackage[compact]{titlesec}  
+%\usepackage{titlesec}
+\usepackage{lscape}     % for the orientation of the content in horizontal
+\usepackage{pdflscape} % for the orientation of the pages in horizontal
+\usepackage{pdfpages}  % para insertar archivos pdf
+%\usepackage[siunitx]{circuitikz}  %para circuitos
+%\usepackage[makeroom]{cancel} %Para cancelar términos en modo matemático
+%\usepackage{cleveref}   %COMO UNA FORMA DE REFERENCIAR TABLAS, ECUACIONES, ETC. -->http://mirror.utexas.edu/ctan/macros/latex/contrib/cleveref/cleveref.pdf
+\usepackage{rotating}        %para rotar el texto
+\usepackage{setspace}
+\usepackage{csquotes}
+\usepackage{lipsum}
+%%FIGURAS TABLAS APA
+\DeclareCaptionLabelSeparator*{spaced}{\\[1.6ex]}
+\captionsetup[table]{textfont=it,format=plain,justification=justified,
+	singlelinecheck=false,labelsep=spaced,skip=04pt}
+%\captionsetup[figure]{labelsep=period,labelfont=it,justification=justified,
+%	singlelinecheck=false,font=doublespacing}
+\captionsetup[figure]{textfont=it,format=plain,justification=justified,
+	singlelinecheck=false,labelsep=spaced,skip=04pt}
+
+
+
+%:Esquema de numeración por defecto
+\setenumerate[1]{label=\normalfont\bfseries{\arabic*.}, leftmargin=*, labelindent=\parindent}
+\setenumerate[2]{label=\normalfont\bfseries{\alph*}), leftmargin=*}
+\setenumerate[3]{label=\normalfont\bfseries{\roman*.}, leftmargin=*}
+\setlist{itemsep=0.1em} %Separacion de item en listas
+\setlength{\parindent}{1.0 em}
+
+\setcounter{tocdepth}{4}						% El nivel hasta el que se muestra el índice 
+\renewcommand{\baselinestretch}{1.5}   %agregado el dia 12/06/2016
+\usepackage{comment}
+
+%Bibliografia
+%\usepackage[language=spanish, backend=biber,style=apa]{biblatex}
+\usepackage{apacite}
+\usepackage{url}
+%Agregando la fuente bibliografica
+%\addbibresource{bibliografia/biblio.bib}  %AQUi agregamos nuestra base de datos
+
+%%jUSTIFICACION A A LA IZQUIERDA
+\raggedright
+
+%%Numeracion ecuaciones: 
+
+\counterwithout{equation}{chapter}
+\renewcommand{\theequation}{Eq. \arabic{equation}}
+\usepackage{makecell}
+% Define a new column type for centering vertically and horizontally
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\renewcommand\theadfont{\bfseries} % Para que el contenido de las cabeceras esté en negrita y centrado

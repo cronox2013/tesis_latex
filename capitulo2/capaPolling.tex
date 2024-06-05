@@ -1,0 +1,14 @@
+La capa de agrupación (Pooling Layer) es una etapa crucial que sigue a las capas convolucionales. Su objetivo principal es reducir la dimensionalidad espacial de la representación convolucional, manteniendo las características más importantes.
+
+Hay dos tipos comunes de funciones de agrupación:
+
+\begin{itemize}
+	
+	\item Max Pooling: Esta función selecciona el valor máximo de una región dentro de la representación convolucional. Ayuda a resaltar las características más relevantes mientras reduce la cantidad de datos y, por ende, el procesamiento necesario.
+	
+	\item Average Pooling: En esta función, se toma el promedio de los valores dentro de la región seleccionada en lugar de escoger el máximo. Aunque es menos común que Max Pooling, se utiliza para reducir la dimensionalidad manteniendo información general.
+	
+\end{itemize}
+
+Ambos tipos de funciones de agrupación ayudan a lograr invarianza espacial, lo que significa que la red es capaz de identificar patrones relevantes independientemente de su posición exacta en la imagen o secuencia de entrada.
+

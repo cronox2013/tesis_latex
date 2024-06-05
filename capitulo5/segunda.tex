@@ -1,0 +1,70 @@
+En esta iteración se realizaron cambios en la arquitectura de la red convolucional base, principalmente en la cantidad de capas de convolución y el pool\_stride. Los detalles de la arquitectura base utilizada para cada modelo se encuentran en la tabla \ref{tbl:9} y los resultados obtenidos por los modelos se detallan en la tabla \ref{tbl:10}, .
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+		1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+		1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+		2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+		2da capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+		3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+		3ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+		4ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 256, 7, 1 \\ \hline
+		1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+		2da capa densa de salida & num\_neuronas & 3 \\ \hline
+	\end{tabular}
+	\caption{Detalle de la arquitectura base}
+	\label{tbl:9}
+\end{table}
+
+Todos los modelos propuestos comparten esta arquitectura base con métodos de regularización adicionales:
+
+\begin{itemize}
+
+\item Modelo cnn\_dp\_four: Incluye dropout al 30\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia.
+
+\item Modelo cnn\_dp\_four\_f: Incluye dropout al 40\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia.
+
+\item Modelo cnn\_dp\_four\_fi: Incluye dropout al 50\% después de cada capa convolucional y después de la capa densa intermedia.
+
+\item Modelo cnn\_bndp\_four\_f: Incluye dropout al 40\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia, más batch normalization en cada capa convolucional y en la capa densa intermedia.
+
+\item Modelo cnn\_bndp\_four\_fi: Incluye dropout al 50\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia, más batch normalization en cada capa convolucional y en la capa densa intermedia.
+
+\item Modelo cnn\_bndp\_four\_ss: Incluye dropout al 60\% después de cada capa convolucional y después de la capa densa intermedia, más batch normalization en cada capa convolucional y en la capa densa intermedia.
+
+\end{itemize}
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		\textbf{Nombre del modelo} & \textbf{Precisión} & \textbf{Perdida} & \textbf{Val\_Precisión} & \textbf{Val\_Perdida} & \textbf{Epoca} \\ \hline
+		~ & 0.7580 & 0.57 & 0.7714 & 0.5561 & 4 \\ \cline{2-6}
+		cnn\_four & 0.8678 & 0.33 & 0.7206 & 0.8668 & 13 \\ \cline{2-6}
+		~ & 0.9729 & 0.05 & 0.6937 & 4.4606 & 150 \\ \hline
+		~ & 0.7870 & 0.53 & 0.7611 & 0.5810 & 11 \\ \cline{2-6}
+		cnn\_dp\_four & 0.8528 & 0.37 & 0.7501 & 0.6475 & 41 \\ \cline{2-6}
+		~ & 0.9019 & 0.25 & 0.7297 & 0.8340 & 150 \\ \hline
+		~ & 0.8158 & 0.46 & 0.7650 & 0.5887 & 31 \\ \cline{2-6}
+		cnn\_dp\_four\_f & 0.8665 & 0.35 & 0.7430 & 0.6575 & 108 \\ \cline{2-6}
+		~ & 0.8726 & 0.33 & 0.7263 & 0.7339 & 150 \\ \hline
+		~ & 0.8013 & 0.80 & 0.7699 & 0.5947 & 45 \\ \cline{2-6}
+		cnn\_dp\_four\_fi & 0.8203 & 0.45 & 0.7625 & 0.6179 & 79 \\ \cline{2-6}
+		~ & 0.8300 & 0.41 & 0.73 & 0.66 & 150 \\ \hline
+		~ & 0.7611 & 0.59 & 0.7442 & 0.6174 & 19 \\ \cline{2-6}
+		cnn\_bndp\_four\_f & 0.8096 & 0.48 & 0.7314 & 0.6467 & 42 \\ \cline{2-6}
+		~ & 0.8662 & 0.34 & 0.5514 & 2.0138 & 150 \\ \hline
+		~ & 0.7890 & 0.53 & 0.7650 & 0.5887 & 55 \\ \cline{2-6}
+		cnn\_bndp\_four\_fi & 0.8021 & 0.49 & 0.7630 & 0.6190 & 74 \\ \cline{2-6}
+		~ & 0.8345 & 0.41 & 0.7403 & 0.6992 & 150 \\ \hline
+		~ & 0.7768 & 0.62 & 0.7255 & 0.5657 & 128 \\ \cline{2-6}
+		cnn\_bndp\_four\_ss & 0.7849 & 0.54 & 0.7349 & 0.6329 & 141 \\ \cline{2-6}
+		~ & 0.7832 & 0.54 & 0.7282 & 0.6471 & 150 \\ \hline
+	\end{tabular}
+	\caption{Detalle resultados obtenidos}
+	\label{tbl:10}
+\end{table}
+
+Los resultados no mostraron una mejora significativa en la precisión ni en la pérdida, por lo que se consideró innecesario desarrollar modelos más profundos. En su lugar, se decidió trabajar con un modelo menos profundo.
