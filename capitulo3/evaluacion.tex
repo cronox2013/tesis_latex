@@ -1,0 +1,10 @@
+Se puede evaluar un modelo de manera intrínseca y extrínseca. A continuación, se detalla la definición de ambos términos en este contexto.
+
+\begin{itemize}
+
+\item Evaluación intrínseca:  En la evaluación intrínseca de sistemas de procesamiento de lenguaje natural, se emplean conjuntos de prueba con etiquetas proporcionadas por humanos, que pueden ser binarias, de una a dos palabras o textos extensos. Se compara la salida del modelo de PLN con estas etiquetas para calcular métricas que reflejen la precisión del modelo en diferentes tareas. Esta evaluación puede automatizarse en la mayoría de las tareas de PLN, aunque hay casos como la traducción automática o la sumarización donde la evaluación automatizada puede ser subjetiva y difícil de implementar. Para las clasificaciones, la matriz de confusión es una herramienta visual comúnmente utilizada que permite la comparación entre la salida predicha y la salida real, facilitando el cálculo de métricas como precisión, recall, puntaje F1 y exactitud, fundamentales para medir el desempeño del modelo.
+
+
+\item Evaluación extrínseca: La evaluación extrínseca se enfoca en medir cómo el modelo se desempeña en el objetivo final de un proyecto industrial de inteligencia artificial, el cual busca resolver problemas empresariales específicos. Aunque la evaluación extrínseca es crucial, se realiza también la evaluación intrínseca porque esta última puede ser realizada internamente por el equipo de IA, antes de involucrar a partes interesadas externas como usuarios finales. Esto ayuda a reducir costos, ya que la evaluación extrínseca puede ser más costosa. Los malos resultados en la evaluación intrínseca generalmente indican malos resultados en la evaluación extrínseca, pero el buen desempeño intrínseco no siempre garantiza buenos resultados extrínsecos. Las razones de un rendimiento deficiente en la evaluación extrínseca pueden incluir métricas inapropiadas, falta de datos adecuados o expectativas erróneas.
+
+\end{itemize}

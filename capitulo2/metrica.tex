@@ -1,0 +1,34 @@
+A continuación se presentan algunas métricas de evaluación utilizadas para modelos de aprendizaje supervisado:
+
+\begin{itemize}
+
+\item Precisión(Precision): Esta métrica se enfoca en las predicciones positivas y mide cuántas de estas predicciones son realmente correctas. Ver ecuación \ref{eq:e25}.
+
+Es importante distinguir esta métrica de la precisión global o exactitud, que evalúa todas las predicciones correctas (tanto positivas como negativas) en relación con el total de predicciones, misma que se ha estado utilizando hasta ahora en la evaluación de los modelos, ver ecuación \ref{eq:e26}.
+
+
+\begin{equation} \label{eq:e25} 
+	\text{Precisión} = \frac{\text{Verdaderos positivos}}{\text{Verdaderos positivos} + \text{Falsos positivos}}
+\end{equation}
+
+\begin{equation} \label{eq:e26} 
+	\text{Accuracy} = \frac{\text{Número de predicciones correctas}}{\text{Número total de predicciones} }
+\end{equation}
+
+\item Sensibilidad (Recall): Es una métrica que mide la capacidad de un modelo para identificar correctamente todas las instancias de una clase positiva, ver ecuación \ref{eq:e27}.
+
+\begin{equation} \label{eq:e27} 
+	\text{Sensibilidad} = \frac{\text{Verdaderos positivos}}{\text{Falsos negativos} + \text{Verdaderos positivos} }
+\end{equation}
+
+La sensibilidad alta indica que el modelo es efectivo en detectar la mayoría de los casos positivos, aunque no mide los falsos positivos.
+
+\item Puntaje F1 (F1 Score): Es una métrica que combina la precisión y la sensibilidad en una sola medida, utilizando la media armónica de ambas. Proporciona un equilibrio entre precisión y sensibilidad, ver ecuación \ref{eq:e28}.
+
+\begin{equation} \label{eq:e28}
+	\text{F1 Score} = 2 \cdot \frac{\text{Precisión}\cdot\text{Sensibilidad}}{\text{Precisión} + \text{Sensibilidad} }
+\end{equation}
+
+\item Matriz de Confusión: Es una representación visual que ayuda a comprender el rendimiento de un algoritmo de clasificación al comparar sus predicciones con los valores verdaderos. En problemas con más de dos clases, la matriz se expande a una matriz NxN, donde N es el número de clases. Los elementos en la diagonal principal indican las predicciones correctas para cada clase, mientras que los elementos fuera de la diagonal principal muestran los errores de clasificación, es decir, cuántas instancias de una clase fueron incorrectamente clasificadas como otra clase.
+
+\end{itemize}

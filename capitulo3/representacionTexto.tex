@@ -19,8 +19,9 @@ Los enfoques tomados para generar todo tipo de representaciones de texto que se 
 
 En el campo del PNL, transformar texto en una forma numérica se llama representación de texto. A continuación se explorarán los distintos métodos para convertir texto en vectores numéricos, todos los que se encuentran clasificados como modelos espaciales vectoriales como one-hot, bag of words, bag of n-grams y TF-IDF  caen dentro del concepto de representación distribucional.
 
+\begin{itemize}
+\item Modelos espaciales vectoriales
 
-\textbf{Modelos espaciales vectoriales}
 
 Los modelos vectoriales espaciales son técnicas que representan las palabras como vectores en un espacio dimensional. Estos modelos tienen como objetivo capturar la semántica de las palabras al asignarles vectores en un espacio matemático, donde la proximidad entre los vectores refleja la similitud semántica entre las palabras. Un modelo de espacio vectorial  es un modelo algebraico simple, en su representación simple son vectores identificadores como un índice de números en un vocabulario de algún documento, párrafo o libro de texto. El modelo más común para medir esta similitud, es la similitud del coseno, ver ecuacion \ref{eq:e21}. Por ejemplo las frases: ``El cielo es azul'' y ``El sol es amarillo'', se pueden representar cada una como un vector numérico. Para calcular la similitud entre estos vectores, se puede utilizar  el coseno del ángulo entre ellos. Si estos vectores se alinean perfectamente, el coseno del ángulo es 1, lo que indica una similitud máxima. Si están en direcciones opuestas, el coseno es -1, lo que significa una similitud mínima.
 \begin{equation} \label{eq:e21} 
@@ -40,8 +41,7 @@ La calidad de los vectores depende de cómo capturan las propiedades lingüísti
 
 \begin{itemize}
 
-	\item ONE HOT ENCODING: En One-Hot Encoding, cada palabra se representa mediante un vector binario donde todas las posiciones son cero excepto una, que corresponde al índice de la palabra en un vocabulario. Si hay un total de N palabras en el vocabulario, cada palabra se representa como un vector de longitud
-N con un único ``1'' en la posición que indica su índice en el vocabulario y ``0'' en todas las demás posiciones. Por ejemplo, si se tiene un vocabulario con las palabras: ``perro'', ``gato'', ``pájaro'' y ``muerde'', la representación One-Hot de cada una sería:
+	\item ONE HOT ENCODING: En One-Hot Encoding, cada palabra se representa mediante un vector binario donde todas las posiciones son cero excepto una, que corresponde al índice de la palabra en un vocabulario. Si hay un total de N palabras en el vocabulario, cada palabra se representa como un vector de longitud N con un único ``1'' en la posición que indica su índice en el vocabulario y ``0'' en todas las demás posiciones. Por ejemplo, si se tiene un vocabulario con las palabras: ``perro'', ``gato'', ``pájaro'' y ``muerde'', la representación One-Hot de cada una sería:
 \begin{Center}
 	perro → [1, 0, 0,0]\\
 	gato → [0, 1, 0,0]\\
@@ -111,13 +111,14 @@ Esta técnica de representación se aplica para cada palabra en cada documento y
 
 \end{itemize}
 
-\textbf{Representaciones distribuidas}
+\item Representaciones distribuidas
 
 Las representaciones distribuidas de texto buscan capturar el significado de palabras, oraciones o frases considerando su proximidad textual, en un espacio vectorial. Estas representaciones, conocidas como embeddings, abordan los desafíos de dimensionalidad y contexto crucial durante el entrenamiento. Para lograrlo, emplean arquitecturas de redes neuronales que generan representaciones de baja dimensión y alta densidad para palabras y textos.
 
 \begin{itemize}
 
 	\item Word embeddings: Las incrustaciones de palabras (word embeddings) son representaciones vectoriales de palabras en un espacio dimensional, donde cada palabra se asigna a un vector denso. Estos vectores son diseñados de manera que palabras con significados similares están cercanas entre sí en este espacio vectorial, además sus representaciones vectoriales de texto tienen dimensiones bajas y densas en comparación con representaciones one-hot encoding, lo que permite una manipulación más eficiente. Los modelos  más populares pueden ser: Word2Vec, GloVe y FastText, uno de los mayores representantes de los modelos embeddings es Word2Vec, que en si mismo es un conjunto de modelos que fueron fundamentales en el campo del Procesamiento del Lenguaje Natural. Desarrollado por un equipo de investigadores de Google, liderado por Tomás Mikolov, en 2013, fue un avance crucial en la generación de representaciones vectoriales de palabras, basadas en modelos de redes neuronales, cuya idea central era capturar y representar la semántica de las palabras a través de sus contextos en un corpus de texto \cite{mikolov2013efficient}. 
+	
 	\item Hiperparametros de embeddings: Algunos hiperparámetros comunes al trabajar con embeddings en modelos como Word2vec, GloVe, fastText o incluso en modelos más avanzados incluyen:  La dimensión del embedding, la cual  determina la longitud de los vectores; la ventana de contexto, controla cuántas palabras vecinas se van a considerar y el tamaño del vocabulario, ya que algunos modelos de embeddings tienen un límite en el tamaño del vocabulario a usar. Ajustar estos y otros  hiperparámetros correctamente puede influir significativamente en la calidad y el rendimiento de los embeddings resultantes.``El ajuste de hiperparámetros juega un papel clave: cualquier método funcionará mal si se utilizan los hiperparámetros incorrectos'' \cite[p. 339]{eisenstein2018natural}.
 	
 	\item Word2Vec.- El modelo Word2Vec se destaca por su capacidad para generar incrustaciones vectoriales significativas y densas para palabras, lo que permite representar el significado semántico de las palabras en un espacio vectorial de dimensiones bajas (vectores de dimensiones 50-500 en vez de varios miles). Su eficiencia para la representación de palabras fue tal, que se observaron habilidades para resolver analogías y capturar relaciones de significado entre palabras como:  
@@ -202,7 +203,7 @@ Representar necesidades.- Existen necesidades lingüísticas y de aplicación qu
 Estado del arte.- La representación neuronal del texto es un área en constante evolución en el campo del procesamiento del lenguaje natural (PNL), con avances rápidos en el estado del arte. Aunque nuevos modelos suelen generar entusiasmo, es importante considerar aspectos prácticos, usar modelos nuevos no siempre será la mejor opción, es importante considerar que también se pueden tener buenos resultados con modelos de embeddings básicos, que además no requieren de mucha capacidad computacional. 
 
 \end{itemize}
-
+\end{itemize}
 
 
 
