@@ -1,38 +1,20 @@
-Modelo Base
+A continuación se presentan los resultados obtenidos del modelo cnn\_base\_tt detallados en la figura \ref{fig:exactitud}, donde se observa que el modelo sufre de sobreajuste, ya que la precisión en el conjunto de entrenamiento aumenta constantemente a medida que avanzan las épocas, mientras que la precisión en el conjunto de validación disminuye.
 
-En la primera iteración de las pruebas, se utilizó una red convolucional 1D con tres capas de convolución, dos capas de maxpooling, una capa de globalmaxpooling y dos capas densas. Esta arquitectura se puede observar con más detalle en la figura 5.2. Los hiperparámetros base, como el numero de filtros, tamaño del stride, pool\_size, etc., se especifican en la tabla \ref{tbl:5}.
-
-
-\begin{table}[!ht]
-	\centering
-	\begin{tabular}{|c|c|c|}
-		\hline
-		\textbf{Tipo de capa } & \textbf{Hiperparámetro } & \textbf{Valor} \\ \hline
-		1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
-		1ra capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
-		2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
-		2da capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
-		3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
-		1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
-		2da capa densa de salida & num\_neuronas & 3 \\ \hline
-	\end{tabular}
-	\caption{Detalle arquitectura primera iteracion}
-	\label{tbl:5}
-\end{table}
-  
-En los resultados detallados en la figura \ref{fig:exactitud}, se observa que el modelo sufre de sobreajuste. La precisión en el conjunto de entrenamiento aumenta constantemente a medida que avanzan las épocas, mientras que la precisión en el conjunto de validación disminuye. En la figura \ref{fig:perdida}, se muestra que el error en el conjunto de validación crece con el tiempo, mientras que el error en el conjunto de entrenamiento disminuye. Los resultados específicos se presentan en la tabla \ref{tbl:6}. Estos indicios sugieren la necesidad de utilizar técnicas de regularización para mitigar el sobreajuste.
-
-\begin{figure}
+\begin{figure}[h!]
 	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/exactitud.png}
-	\caption{Exacitud a lo largo de las epocas}
-	\floatfoot{Fuente: Elaboración propia, generado con matplotlib}
+	\caption[Exactitud del modelo base]{Exactitud del modelo base
+		\\\textit{Fuente: Elaboracion Propia}}
 	\label{fig:exactitud}
 \end{figure}
 
-\begin{figure}
+ De igual forma en la figura \ref{fig:perdida}, se muestra que el error en el conjunto de validación crece con el tiempo, mientras que el error en el conjunto de entrenamiento disminuye, los resultados específicos obtenidos bajo las métricas seleccionadas se presentan en la tabla \ref{tbl:6}. Todos estos resultados obtenidos por el modelo cnn\_base\_tt  sugieren la necesidad de utilizar técnicas de regularización para mitigar el sobreajuste.
+
+
+
+\begin{figure}[h!]
 	\includegraphics[width=0.65\textwidth]{capitulo5/figuras/perdida.png}
-	\caption{Perdida a lo largo de las epocas}
-	\floatfoot{Fuente: Elaboración propia, generado con matplotlib}
+	\caption[Perdida del modelo base]{Perdida del modelo base
+		\\\textit{Fuente: Elaboracion Propia}}
 	\label{fig:perdida}
 \end{figure}
 
@@ -45,19 +27,12 @@ En los resultados detallados en la figura \ref{fig:exactitud}, se observa que el
 		cnn\_base\_tt & 0.978 & 0.04 & 0.7128 & 3.3866 & 109 \\ \cline{2-6} 
 		~ & 0.9811 & 0.04 & 0.6893 & 3.8825 & 150 \\ \hline
 	\end{tabular}
-	\caption{Detalle resultados específicos primera iteracion}
+	\caption[Detalle resultados del modelo cnn\_base\_tt]{Detalle resultados del modelo cnn\_base\_tt
+		\\\textit{Fuente: Elaboracion Propia}}
 	\label{tbl:6}
 \end{table}
 
-Modelo base y técnicas de regularización
-
-A continuación, se detallan los modelos base utilizados junto con las técnicas de regularización aplicadas a cada uno. Se eligieron tres tipos de técnicas de regularización: normalización por lotes (batch normalization), regularización L2 y dropout. En esta iteración, se aplicó un tipo de regularización a cada capa convolucional. Los resultados obtenidos se presentan en la tabla \ref{tbl:7} y los detalles  sobre cada modelos a continuación:
-
-\begin{itemize}
-\item Modelo cnn\_base\_bn\_tt: Se aplicó normalización por lotes (batch normalization) a cada capa convolucional y a la capa densa intermedia.
-\item Modelo cnn\_base\_dp\_tt: Se aplicó un dropout al 30\% a todas las capas convolucionales y un dropout al 50\% a la capa densa intermedia.
-\item Modelo cnn\_base\_l2\_tt: Se aplicó regularización L2 con un valor de 0,05 a cada capa convolucional y a la capa densa intermedia.
-\end{itemize}
+Debido al sobreajuste demostrado en los resultados del modelo cnn\_base\_tt se utilizaron técnicas de regularización con nuevos modelos, Los resultados obtenidos de cada uno de estos modelos regularizados se presentan en la tabla \ref{tbl:7}.
 
 \begin{table}[!ht]
 	\centering
@@ -74,11 +49,12 @@ A continuación, se detallan los modelos base utilizados junto con las técnicas
 		cnn\_base\_l2\_tt & 0.4191 & 1.02 & 0.4048 & 1.0500 & 128 \\ \cline{2-6} 
 		~ & 0.4118 & 1.02 & 0.4048 & 1.0503 & 150 \\ \hline
 	\end{tabular}
-	\caption{Detalle de los modelos base utilizados junto con las técnicas de regularización aplicadas}
+	\caption[Resultados de modelos regularizados]{Resultados de modelos regularizados
+		\\\textit{Fuente: Elaboracion Propia}}
 	\label{tbl:7}
 \end{table}
 
-En los resultados detallados en la tabla \ref{tbl:7}, se observa que los métodos de regularización dropout y batch normalization (BN) retrasaron el sobreajuste. Sin embargo, al considerar el mejor modelo guardado con el menor error, el resultado es casi similar al obtenido por el modelo no regularizado. Por lo tanto, se probó el uso de dos técnicas de regularización simultáneamente en el modelo, manteniendo las mismas características pero modificando la capa densa intermedia a 64 y 32 neuronas en los modelos cnn\_base\_bndp\_64t y cnn\_base\_bndp\_32t, respectivamente. Los detalles y resultados se presentan en la tabla \ref{tbl:8}.
+En los resultados detallados en la tabla \ref{tbl:7}, se observa que los métodos de regularización dropout y batch normalization (BN) retrasaron el sobreajuste. Sin embargo, al considerar el mejor modelo guardado con el menor error, el resultado es casi similar al obtenido por el modelo no regularizado. Por lo tanto, se probó el uso de dos técnicas de regularización simultáneamente en los modelos. A continuación se detallan los resultados obtenidos en los modelos que usan dos técnicas de regularización:
 
 \begin{table}[!ht]
 	\centering
@@ -95,8 +71,11 @@ En los resultados detallados en la tabla \ref{tbl:7}, se observa que los método
 		cnn\_base\_bndp\_32t & 0.8580 & 0.37 & 0.7627 & 0.6342 & 56 \\ \cline{2-6}
 		~ & 0.8962 & 0.28 & 0.7436 & 0.7562 & 150 \\ \hline
 	\end{tabular}
-	\caption{Detalle de los modelos base utilizados modificando la capa densa intermedia a 64 y 32 neuronas}
+	\caption[Resultados de modelos regularizados]{Resultados de modelos regularizados
+		\\\textit{Fuente: Elaboracion Propia}}
 	\label{tbl:8}
 \end{table}
 
-Los resultados obtenidos en la tabla algo \ref{tbl:8} demuestran que, sin importar la época, el error en el conjunto de validación no sobrepasará 1.0 y siempre se mantendrá por debajo de ese rango. La precisión en el conjunto de validación se mantendrá siempre por encima de 0.75, siendo la mejor métrica de 0.78, obtenida por el modelo cnn\_base\_bndp\_32t, superando en 2 puntos la precisión del modelo base. Sin embargo, el modelo cnn\_base\_bndp\_64t fue el que obtuvo la menor pérdida.
+Los resultados obtenidos en la tabla algo \ref{tbl:8} demuestran que, sin importar la época, el error en el conjunto de validación no sobrepasará el valor de 1.0 y siempre se mantendrá por debajo de ese rango. La precisión en el conjunto de validación se mantendrá siempre por encima de 0.75 en la época con menor perdida de cada modelo, siendo la mejor métrica de 0.78 obtenida por el modelo cnn\_base\_bndp\_32t, mismo que supera en 2 puntos la precisión del modelo base. Sin embargo, el modelo cnn\_base\_bndp\_64t es el que obtiene la menor pérdida.
+
+

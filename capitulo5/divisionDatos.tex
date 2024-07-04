@@ -1,0 +1,20 @@
+Se trabajó con una porción del conjunto de datos total, específicamente con 35,000 muestras, las cuales se dividieron en tres partes: el conjunto de entrenamiento, el conjunto de prueba y el conjunto de validación. Las proporciones correspondientes a cada porción se pueden visualizar en la tabla \ref{tbl:conjuntos}, para asegurar la uniformidad en la distribución de clases, lo cual es crucial para el rendimiento del modelo, se creó este conjunto de datos priorizando una cantidad de muestras equilibrada para cada clase.
+
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Conjunto} & \textbf{Ofensivo} & \textbf{No ofensivo} & \textbf{Grosero} & \textbf{Porcentaje (\%)} \\ \hline
+		Entrenamiento & 10250 & 10250 & 4000 & 24500 = 70\% \\ 
+		Validación & 2125 & 2125 & 1000 & 5250 = 15\% \\ 
+		Prueba & 2580 & 2572 & 98 & 5250 = 15\% \\ \hline
+		\textbf{Total} & 14955 & 14947 & 5098 & \textbf{35.000 = 100\%} \\ \hline
+	\end{tabular}
+	\caption[División del conjunto de datos]{División del conjunto de datos
+		\\\textit{Fuente: Elaboración Propia}}
+	\label{tbl:conjuntos}
+\end{table}
+
+
+Como se puede observar en la tabla \ref{tbl:conjuntos} la cantidad de clases en los conjuntos de datos no es uniforme para la categoría de lenguaje grosero, esto debido a que la cantidad de muestras totales para esta categoría no sobrepasa los 6000 ejemplares y por esa razón se priorizo otorgarle la mayor cantidad de muestras posibles a los conjuntos de entrenamiento y validación.

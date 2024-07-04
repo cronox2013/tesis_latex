@@ -70,6 +70,7 @@
 \usepackage{epsfig}
 \usepackage{epigraph}
 \setlength\epigraphwidth{.8\textwidth}
+
 \usepackage{lettrine}
 \definecolor{lightblue}{rgb}{0.03,0.22,0.93}
 \usepackage{tabularray}
@@ -79,9 +80,7 @@
 
 % Configuración para centrar la leyenda debajo de la imagen
 \floatsetup[figure]{capposition=bottom, justification=centering}
-
-
-
+\captionsetup[figure]{labelfont=bf, font=footnotesize}
 
 \usepackage[absolute]{textpos} 
 \setlength{\TPHorizModule}{\paperwidth}
@@ -90,17 +89,12 @@
 %%%fijandoMargenes
 \usepackage{geometry}
 \geometry
-{paperheight=279mm,%
-paperwidth=215mm,%
+{paperheight=27.94cm,%
+paperwidth=21.59cm,%
 top=20mm,%
 left=30mm,%
 right=20mm,%
-bottom=20mm,%
-headsep=7.5mm,%
-footskip=10mm,%
-textheight=217mm,%
-textwidth=150mm,%
-bindingoffset=10mm,}
+bottom=20mm,}
 %%%%%
 \usepackage{mathptmx}
 \usepackage{newtxtext,newtxmath}
@@ -138,10 +132,24 @@ bindingoffset=10mm,}
 \usepackage{ifthen}
 \usepackage{multicol}       % for pages with multiple text columns, e.g. References 
 \setlength{\columnsep}{10pt} % space between columns; default 10pt quite narrow
-\usepackage[nottoc]{tocbibind} % correct page numbers for bib in TOC, nottoc suppresses an entry for TOC itself
+\usepackage[nottoc,notlof,notlot]{tocbibind} % correct page numbers for bib in TOC, nottoc suppresses an entry for TOC itself
 \usepackage{nextpage}
-\usepackage[compact]{titlesec}  
-%\usepackage{titlesec}
+%\usepackage[compact]{titlesec}  
+\usepackage{titlesec}
+% Espaciado entre párrafos
+\setlength{\parskip}{0.8em}
+\setlength{\parindent}{0pt}  % Opcional, elimina la sangría de los párrafos
+
+
+% Configuración de títulos y subtítulos
+\titlespacing*{\section}
+{0pt}{0pt}{6pt}  % Espaciado anterior y posterior a la sección
+\titlespacing*{\subsection}
+{0pt}{0pt}{6pt}  % Espaciado anterior y posterior a la subsección
+\titlespacing*{\subsubsection}
+{0pt}{0pt}{6pt}  % Espaciado anterior y posterior a la subsubsección
+
+
 \usepackage{lscape}     % for the orientation of the content in horizontal
 \usepackage{pdflscape} % for the orientation of the pages in horizontal
 \usepackage{pdfpages}  % para insertar archivos pdf
@@ -153,14 +161,11 @@ bindingoffset=10mm,}
 \usepackage{csquotes}
 \usepackage{lipsum}
 %%FIGURAS TABLAS APA
-\DeclareCaptionLabelSeparator*{spaced}{\\[1.6ex]}
-\captionsetup[table]{textfont=it,format=plain,justification=justified,
-	singlelinecheck=false,labelsep=spaced,skip=04pt}
-%\captionsetup[figure]{labelsep=period,labelfont=it,justification=justified,
-%	singlelinecheck=false,font=doublespacing}
-\captionsetup[figure]{textfont=it,format=plain,justification=justified,
-	singlelinecheck=false,labelsep=spaced,skip=04pt}
-
+\DeclareCaptionLabelSeparator*{spaced}{\\[0.6ex]}
+\captionsetup[table]{textfont=normal,format=plain,justification=centering,
+	singlelinecheck=true,labelsep=colon,skip=04pt}
+\captionsetup[figure]{textfont=normal,format=plain,justification=centering,
+	singlelinecheck=true,labelsep=colon,skip=04pt}
 
 
 %:Esquema de numeración por defecto
@@ -182,7 +187,9 @@ bindingoffset=10mm,}
 %\addbibresource{bibliografia/biblio.bib}  %AQUi agregamos nuestra base de datos
 
 %%jUSTIFICACION A A LA IZQUIERDA
-\raggedright
+%\usepackage{ragged2e}
+
+\usepackage{blindtext}
 
 %%Numeracion ecuaciones: 
 
