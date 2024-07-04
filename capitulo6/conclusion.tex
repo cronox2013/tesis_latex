@@ -1,0 +1,28 @@
+El objetivo principal de este proyecto fue la creación de un conjunto de datos de opiniones en redes sociales en el contexto boliviano, así como el desarrollo de redes convolucionales con diferentes arquitecturas para la clasificación de comentarios en tres categorías: lenguaje no ofensivo, lenguaje ofensivo y lenguaje grosero. A continuación, se presentan las conclusiones principales obtenidas:
+
+\begin{itemize}
+
+\item Se logró construir un conjunto de datos compuesto por más de 78,000 comentarios de redes sociales, etiquetados en tres categorías específicas. Este conjunto de datos representa de manera significativa el uso del lenguaje en el contexto boliviano y representa una contribución para la investigación en procesamiento del lenguaje natural.
+
+\item Las redes convolucionales fueron efectivas en la clasificación de comentarios. Específicamente, la red con dos capas convolucionales mostró resultados prometedores en términos de precisión y capacidad de generalización, como se refleja en las métricas obtenidas en el conjunto de prueba, donde la precisión global aumentó un 2\% en comparación con el conjunto de validación.
+
+\item El modelo con dos capas convolucionales demostró ser adecuado para la tarea, destacándose por su alta precisión en la clasificación de lenguaje no ofensivo y lenguaje grosero, y mostrando un rendimiento satisfactorio en la categoría de lenguaje ofensivo.
+
+\item La relevancia del contexto boliviano fue crucial para la correcta interpretación y clasificación de los comentarios. La falta de características específicas del contexto boliviano en el nuevo conjunto de datos creado afectó significativamente la precisión de las predicciones.
+
+\item Se observó que añadir más capas de convolución no resultó en mejoras significativas en el rendimiento del clasificador, sugiriendo la necesidad de aumentar la cantidad de datos para lograr mejoras sustanciales.
+
+\item No se encontró que el uso de capas ocultas completamente conectadas generará cambios significativos en los resultados y, en algunos casos, podría contribuir al sobreajuste del modelo.
+
+\item En cuanto a la cantidad de parámetros del conjunto de datos, se utilizó únicamente el contenido textual de cada comentario y su etiqueta correspondiente como información de entrada. Incorporar más parámetros, como el análisis de sentimientos de cada comentario o información del usuario (como género, edad y ubicación geográfica), podría ser relevante para una interpretación más precisa del contenido. Sin embargo, el modelo clasificador pudo aprender las características necesarias para realizar predicciones con la información disponible.
+
+\item Se identificaron limitaciones en la capacidad del modelo para distinguir entre lenguaje ofensivo y grosero, sugiriendo la exploración de arquitecturas más complejas o la recopilación de más ejemplos que representen adecuadamente el lenguaje grosero para mejorar la precisión en estas categorías.
+
+\end{itemize}
+
+
+
+
+
+
+

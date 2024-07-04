@@ -1,9 +1,12 @@
 El aprendizaje en una red neuronal supervisada se logra a través de su entrenamiento. Como se mencionó previamente, este proceso implica la adaptación de los pesos y sesgos de las conexiones entre las neuronas para permitir al modelo realizar predicciones precisas sobre nuevos datos. Este proceso se divide en varias fases esenciales que pueden agruparse de la siguiente manera:
 
-\textbf{Propagación hacia adelante}
+\begin{itemize}
+\item Propagación hacia adelante
+\end{itemize}
+
 
 Una vez que se ha definido la arquitectura de una red neuronal con su cantidad de capas, neuronas por capa, y funciones de activación, el siguiente paso es la inicialización de los pesos. Los pesos y sesgos de la red neuronal pueden ser asignados aleatoriamente o con valores predefinidos.
-Lo que sigue es realizar la Propagación hacia Adelante (Forward Propagation) a través de toda la red, este proceso implica el paso de los datos de entrada a través de la red neuronal, capa por capa, desde la capa de entrada hasta la capa de salida, para generar una predicción o salida. Durante esta fase, cada capa de la red neuronal realiza dos operaciones clave:
+Lo que sigue es realizar la propagación hacia adelante (forward propagation) a través de toda la red, este proceso implica el paso de los datos de entrada a través de la red neuronal, capa por capa, desde la capa de entrada hasta la capa de salida, para generar una predicción o salida. Durante esta fase, cada capa de la red neuronal realiza dos operaciones clave:
 
 \begin{itemize}
 	\item Ponderación y Suma: Cada neurona en una capa recibe entradas de todas las neuronas de la capa anterior, multiplicadas por los pesos respectivos. Estos productos se suman junto con el sesgo asociado a la neurona. Esta operación puede representarse como $Z=W\cdot X+b$, donde $Z$ almacena el valor de la suma ponderada.
@@ -12,8 +15,9 @@ Lo que sigue es realizar la Propagación hacia Adelante (Forward Propagation) a 
 
 La propagación hacia adelante se utiliza tanto en el entrenamiento como en la predicción de una red neuronal. Durante el entrenamiento, se utiliza para generar predicciones con los datos de entrenamiento y calcular la pérdida, que luego se utiliza en el proceso de retropropagación para ajustar los pesos y mejorar las predicciones. En la predicción o evaluación de nuevos datos, la red simplemente realiza la propagación hacia adelante para generar predicciones sin actualizar los pesos de la red.
 
-
-\textbf{Propagación hacia atrás}
+\begin{itemize}
+\item{Propagación hacia atrás}
+\end{itemize}
 
 La retropropagación (backpropagation) en el entrenamiento de redes neuronales ajusta tanto los pesos como los sesgos. Durante el proceso de retropropagación, se calculan los gradientes de la función de coste respecto a todos los pesos y sesgos en la red.
 

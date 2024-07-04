@@ -1,0 +1,517 @@
+Para establecer la arquitectura base, los hiperparámetros y cualquier configuración necesaria en los modelos base, se aprovechó principalmente la teoría detallada en este proyecto, así como la documentación expuesta de las herramientas en uso, donde se pueden observar los valores que pueden establecerse. Además, se tuvieron en cuenta trabajos relacionados o similares a la tarea en cuestión. Se optó por utilizar una red neuronal convolucional 1D debido a la naturaleza de los datos textuales. Los hiperparámetros específicos se detallarán más adelante.
+
+\begin{itemize}
+	\item Hiperparametros de los modelos
+\end{itemize}
+Los hiperparámetros utilizados se pueden dividir en dos categorías. En la primera se encuentran los hiperparámetros constantes, que no se modificaron durante ni después de las pruebas, esta sección se enfocara en estos hiperparámetros. Respecto a la segunda categoria donde se trata a los hiperparámetros que se modificaron durante las pruebas se detallarán al momento de describir los modelos y sus resultados.
+
+En la tabla \ref{tbl:3} se pueden observar los hiperparámetros utilizados para la capa de embedding en cada uno de los modelos convolucionales propuestos.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Hiperparametro} & \textbf{Valor} \\ \hline
+		max\_tam\_secuencia & 150 \\ \hline
+		max\_num\_palabras  & 40000 \\ \hline
+		embedding\_dim  & 300 \\ \hline
+		max\_num\_palabras & 40000 \\ \hline
+		embedding\_matriz & 30270 x 300 \\ \hline
+		entrenable & False \\ \hline
+	\end{tabular}
+	\caption{Detalle Hiperparametros y valores usados para la capa de embedding
+		\\\textit{Fuente: Elaboracion Propia}}
+	\label{tbl:3}
+\end{table}
+
+Para las capas restantes, como las capas de convolución, se detallan los hiperparámetros constantes en la tabla \ref{tbl:4}.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Hiperparametro } & \textbf{Valor} \\ \hline
+		Optimizador & 'rmsprop' \\ \hline
+		Batch\_size & 128 \\ \hline
+		Epoca & 150 \\ \hline
+		funcion\_activacion en capas convolucionales & 'relu' \\ \hline
+		funcion\_activacion en capa densa intermedia & 'relu' \\ \hline
+		funcion\_activacion en capa densa de salida & 'softmax' \\ \hline
+	\end{tabular}
+	\caption{Detalle Hiperparametros y valores usados para las capas restantes
+		\\\textit{Fuente: Elaboracion Propia}}
+	\label{tbl:4}
+\end{table}
+
+\begin{itemize}
+	\item Primera iteración
+\end{itemize}
+
+En la primera iteración de las pruebas, se utilizó una red convolucional 1D con tres capas de convolución, dos capas de maxpooling, una capa de globalmaxpooling y dos capas densas. Esta arquitectura se puede observar con más detalle en la la tabla \ref{tbl:5}, la misma constituye la arquitectura base del modelo cnn\_base\_tt.
+
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Tipo de capa } & \textbf{Hiperparámetro } & \textbf{Valor} \\ \hline
+		1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+		1ra capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+		2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+		2da capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+		3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+		1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+		2da capa densa de salida & num\_neuronas & 3 \\ \hline
+	\end{tabular}
+	\caption{Detalle arquitectura del modelo base
+		\\\textit{Fuente: Elaboracion Propia}}
+	\label{tbl:5}
+\end{table}
+
+De igual forma se detallan los modelos base utilizados junto con las técnicas de regularización aplicadas a cada uno. Se eligieron tres tipos de técnicas de regularización: normalización por lotes (batch normalization), regularización L2 y dropout. En esta iteración, se aplicó un tipo de regularización a cada capa convolucional. Los detalles  sobre cada uno de los modelos regularizados se presentan a continuación:
+
+\begin{itemize}
+	
+	\item Modelo cnn\_base\_bn\_tt: Se aplicó normalización por lotes (batch normalization) a cada capa convolucional y a la capa densa intermedia, para más detalles ver la tabla \ref{tbl:cnn_base_bn_tt}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa BatchNormalization & - & - \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa BatchNormalization & - & - \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa BatchNormalization & - & - \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			4ta capa BatchNormalization & - & - \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_base\_bn\_tt
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_base_bn_tt}
+	\end{table}
+	
+	
+	\item  Modelo cnn\_base\_dp\_tt: Se aplicó un dropout al 30\% a todas las capas convolucionales y un dropout al 50\% a la capa densa intermedia, para más detalles ver la tabla \ref{tbl:cnn_base_dp_tt}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa Dropout & tasa & 0.3 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			4ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_base\_dp\_tt
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_base_dp_tt}
+	\end{table}
+	
+	
+	\item  Modelo cnn\_base\_l2\_tt: Se aplicó regularización L2 con un valor de 0,05 a cada capa convolucional y a la capa densa intermedia, para más detalles ver la tabla \ref{tbl:cnn_base_l2_tt}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride, L2 & 32, 3, 1, 0.05 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride, L2 & 64, 5, 1, 0.05 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride, L2 & 128, 5, 1, 0.05 \\ \hline
+			1ra capa densa intermedia & num\_neuronas, L2 & 128, 0.05 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_base\_l2\_tt
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_base_l2_tt}
+	\end{table}
+	
+	
+\end{itemize}
+
+También se utilizaron modelos base con dos técnicas de regularización simultáneamente. Se mantuvieron las mismas características en cuanto a la arquitectura, pero se modificó la capa densa intermedia a 64 y 32 neuronas. A continuación, se detallan estos modelos:
+
+\begin{itemize}
+	
+	\item Modelo cnn\_base\_bndp\_128tt: Se aplicó normalización por lotes (batch normalization) y dropout a cada capa convolucional y a la capa densa intermedia, para más detalles ver la tabla \ref{tbl:cnn_base_bndp_128tt}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa BatchNormalization & - & - \\ \hline
+			1ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa BatchNormalization & - & - \\ \hline
+			2da capa Dropout & tasa & 0.3 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa BatchNormalization & - & - \\ \hline
+			3ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			4ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_base\_bndp\_128tt
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_base_bndp_128tt}
+	\end{table}
+	
+	
+	\item Modelo cnn\_base\_bndp\_64tt: Se aplicó normalización por lotes (batch normalization) y dropout a cada capa convolucional y dropout a la primera capa densa intermedia donde se redujo la cantidad de neuronas a 64, para más detalles ver la tabla \ref{tbl:cnn_base_bndp_64tt}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa BatchNormalization & - & - \\ \hline
+			1ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa BatchNormalization & - & - \\ \hline
+			2da capa Dropout & tasa & 0.3 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa BatchNormalization & - & - \\ \hline
+			3ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 64 \\ \hline
+			4ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_base\_bndp\_64tt
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_base_bndp_64tt}
+	\end{table}
+	
+	
+	\item Modelo cnn\_base\_bndp\_32tt: Se aplicó normalización por lotes (batch normalization) y dropout a cada capa convolucional y dropout a la primera capa densa intermedia, donde se redujo la cantidad de neuronas a 32, para más detalles ver la tabla \ref{tbl:cnn_base_bndp_32tt}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa BatchNormalization & - & - \\ \hline
+			1ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa BatchNormalization & - & - \\ \hline
+			2da capa Dropout & tasa & 0.3 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 2 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa BatchNormalization & - & - \\ \hline
+			3ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 32 \\ \hline
+			4ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_base\_bndp\_32tt
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_base_bndp_32tt}
+	\end{table}
+	
+	
+\end{itemize}
+
+\begin{itemize}
+	\item Segunda iteración
+\end{itemize}
+
+En esta iteración se realizaron cambios en la arquitectura de la red convolucional base, principalmente en la cantidad de capas de convolución y el pool\_stride. Los detalles de la arquitectura del modelo cnn\_four se encuentran en la tabla \ref{tbl:9}.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+		1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+		1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+		2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+		2da capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+		3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+		3ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+		4ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 256, 7, 1 \\ \hline
+		1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+		2da capa densa de salida & num\_neuronas & 3 \\ \hline
+	\end{tabular}
+	\caption{Detalle de la arquitectura de cuatro capas
+	\\\textit{Fuente: Elaboracion Propia}}
+	\label{tbl:9}
+\end{table}
+
+Todos los modelos propuestos a continuación comparten esta arquitectura base con métodos de regularización adicionales:
+
+\begin{itemize}
+	
+	\item Modelo cnn\_dp\_four: Incluye dropout al 30\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia, para más detalles ver tabla \ref{tbl:cnn_dp_four}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa Dropout & tasa & 0.3 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa Dropout & tasa & 0.3 \\ \hline
+			3ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			4ta capa convolucional 1D & num\_filtros, tam\_filtros, stride & 256, 7, 1 \\ \hline
+			4ta capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			5ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_dp\_four
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_dp_four}
+	\end{table}
+	
+	
+	\item Modelo cnn\_dp\_four\_f: Incluye dropout al 40\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia, para más detalles ver la tabla \ref{tbl:cnn_dp_four_f}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa Dropout & tasa & 0.4 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa Dropout & tasa & 0.4 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa Dropout & tasa & 0.4 \\ \hline
+			3ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			4ta capa convolucional 1D & num\_filtros, tam\_filtros, stride & 256, 7, 1 \\ \hline
+			4ta capa Dropout & tasa & 0.4 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			5ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_dp\_four\_f
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_dp_four_f}
+	\end{table}
+	
+	
+	\item Modelo cnn\_dp\_four\_fi: Incluye dropout al 50\% después de cada capa convolucional y después de la capa densa intermedia, para más detalles ver la tabla \ref{tbl:cnn_dp_four_fi}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa Dropout & tasa & 0.5 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa Dropout & tasa & 0.5 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa Dropout & tasa & 0.5 \\ \hline
+			3ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			4ta capa convolucional 1D & num\_filtros, tam\_filtros, stride & 256, 7, 1 \\ \hline
+			4ta capa Dropout & tasa & 0.5 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			5ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_dp\_four\_fi
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_dp_four_fi}
+	\end{table}
+	
+	
+	\item Modelo cnn\_bndp\_four\_f: Incluye dropout al 40\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia, más batch normalization en dos capas convolucionales, para más detalles ver la tabla \ref{tbl:cnn_bndp_four_f}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa BatchNormalization & - & - \\ \hline
+			1ra capa Dropout & tasa & 0.5 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa Dropout & tasa & 0.5 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa BatchNormalization & - & - \\ \hline
+			3ra capa Dropout & tasa & 0.5 \\ \hline
+			3ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			4ta capa convolucional 1D & num\_filtros, tam\_filtros, stride & 256, 7, 1 \\ \hline
+			4ta capa Dropout & tasa & 0.5 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			5ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_bndp\_four\_f
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_bndp_four_f}
+	\end{table}
+	
+	
+	\item Modelo cnn\_bndp\_four\_fi: Incluye dropout al 50\% después de cada capa convolucional y dropout al 50\% después de la capa densa intermedia, más batch normalization en dos capas convolucionales, para más detalles ver la tabla \ref{tbl:cnn_bndp_four_fi}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa BatchNormalization & - & - \\ \hline
+			1ra capa Dropout & tasa & 0.5 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa Dropout & tasa & 0.5 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa BatchNormalization & - & - \\ \hline
+			3ra capa Dropout & tasa & 0.5 \\ \hline
+			3ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			4ta capa convolucional 1D & num\_filtros, tam\_filtros, stride & 256, 7, 1 \\ \hline
+			4ta capa Dropout & tasa & 0.5 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			5ta capa Dropout & tasa & 0.5 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_bndp\_four\_fi
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_bndp_four_fi}
+	\end{table}
+	
+	
+	\item Modelo cnn\_bndp\_four\_ss: Incluye dropout al 60\% después de cada capa convolucional y después de la capa densa intermedia, más batch normalization en cada capa convolucional, para más detalles ver la tabla \ref{tbl:cnn_bndp_four_ss}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 32, 3, 1 \\ \hline
+			1ra capa BatchNormalization & - & - \\ \hline
+			1ra capa Dropout & tasa & 0.6 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 5, 1 \\ \hline
+			2da capa BatchNormalization & - & - \\ \hline
+			2da capa Dropout & tasa & 0.6 \\ \hline
+			2da capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			3ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			3ra capa BatchNormalization & - & - \\ \hline
+			3ra capa Dropout & tasa & 0.6 \\ \hline
+			3ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			4ta capa convolucional 1D & num\_filtros, tam\_filtros, stride & 256, 7, 1 \\ \hline
+			4ta capa BatchNormalization & - & - \\ \hline
+			4ta capa Dropout & tasa & 0.6 \\ \hline
+			1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+			5ta capa Dropout & tasa & 0.6 \\ \hline
+			2da capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_bndp\_four\_ss
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_bndp_four_ss}
+	\end{table}
+	
+	
+\end{itemize}
+
+\begin{itemize}
+	\item Tercera iteración
+\end{itemize}
+Como última iteración, se experimentó con una red menos profunda de dos capas. La red convolucional cnn\_two se estableció como la arquitectura base, sus hiperparámetros y estructura se describen en la tabla \ref{tbl:11}.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Tipo de capa} & \textbf{Hiperparámetro } & \textbf{Valor} \\ \hline
+		1ra capa convolucional 1D & um\_filtros, tam\_filtros, stride & 64, 3, 1 \\ \hline
+		1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+		2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+		1ra capa densa intermedia & num\_neuronas & 128 \\ \hline
+		2da capa densa de salida & num\_neuronas & 3 \\ \hline
+	\end{tabular}
+	\caption{Detalle arquitectura de la red convolucional cnn\_two
+		\\\textit{Fuente: Elaboracion Propia}}
+	\label{tbl:11}
+\end{table}
+
+A partir de la arquitectura base del modelo cnn\_two, se añadieron técnicas de regularización dropout en los modelos propuestos a continuación:
+
+\begin{itemize}
+	
+	\item Modelo cnn\_dp\_two: Se le aplicó un dropout del 30\% después de cada capa convolucional y un dropout del 50\% después de la capa densa intermedia, para más detalles ver la tabla \ref{tbl:cnn_dp_two}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 3, 1 \\ \hline
+			1ra capa Dropout & tasa & 0.3 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			2da capa Dropout & tasa & 0.3 \\ \hline
+			Capa densa intermedia & num\_neuronas & 128 \\ \hline
+			3ra capa Dropout & tasa & 0.5 \\ \hline
+			Capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_dp\_two
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_dp_two}
+	\end{table}
+	
+	
+	\item Modelo cnn\_dp\_two1: Se le aplicó un dropout del 10\% después de cada capa convolucional y un dropout del 20\% después de la capa densa intermedia, para más detalles ver la tabla \ref{tbl:cnn_dp_two1}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\textbf{Tipo de capa} & \textbf{Hiperparámetro} & \textbf{Valor} \\ \hline
+			1ra capa convolucional 1D & num\_filtros, tam\_filtros, stride & 64, 3, 1 \\ \hline
+			1ra capa Dropout & tasa & 0.1 \\ \hline
+			1ra capa maxpooling & tam\_pool, pool\_stride & 2, 1 \\ \hline
+			2da capa convolucional 1D & num\_filtros, tam\_filtros, stride & 128, 5, 1 \\ \hline
+			2da capa Dropout & tasa & 0.1 \\ \hline
+			Capa densa intermedia & num\_neuronas & 128 \\ \hline
+			3ra capa Dropout & tasa & 0.2 \\ \hline
+			Capa densa de salida & num\_neuronas & 3 \\ \hline
+		\end{tabular}
+		\caption{Arquitectura del modelo cnn\_dp\_two1
+			\\\textit{Fuente: Elaboracion Propia}}
+		\label{tbl:cnn_dp_two1}
+	\end{table}
+	
+	
+\end{itemize}
+
+\clearpage

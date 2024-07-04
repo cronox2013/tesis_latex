@@ -1,6 +1,8 @@
 La capa de convolución es uno de los componentes fundamentales en una red neuronal convolucional. Esta capa realiza operaciones de convolución en la entrada, lo que permite que la red aprenda características relevantes de los datos, como patrones visuales en una entrada de imágenes.
+ \begin{itemize}
+\item Filtro
+ \end{itemize}
 
-\textbf{Filtro}
 
 La capa de convolución utiliza filtros (también llamados kernels) que son matrices pequeñas (por ejemplo, 3x3 o 5x5) que se deslizan sobre la entrada. Estos filtros son los parámetros que se aprenden durante el entrenamiento de la red. Durante la fase de entrenamiento, la red aprende automáticamente los valores óptimos para los filtros convolucionales que maximizan su capacidad para reconocer patrones relevantes en los datos de entrada. Este proceso se lleva a cabo de la siguiente manera:
  
@@ -18,14 +20,17 @@ La capa de convolución utiliza filtros (también llamados kernels) que son matr
 	\item Iteración: Este proceso se repite para múltiples iteraciones (épocas) a medida que la red continúa refinando los pesos y los filtros para mejorar su capacidad de generalización en los datos de entrenamiento.
 \end{itemize}
 
-\textbf{Operación de convolución}
+ \begin{itemize}
+\item Operación de convolución
+ \end{itemize}
+
 
 En términos generales, la convolución es una operación donde se  aplica un filtro o núcleo a regiones pequeñas de la entrada de la red convolucional, desplazándose secuencialmente. Esto involucra la multiplicación elemento por elemento entre el filtro y la sección correspondiente de la entrada. Estos productos se suman para generar un único valor en una nueva matriz, conocida como mapa de características o feature map, ver Figura \ref{fig:an10}
 
 \begin{figure}[h!]
-	\includegraphics[width=0.65\textwidth]{capitulo2/figuras/an10.png}
-	\caption{Convolución valida 2-D sin kernel volteado}
-	\floatfoot{Fuente: Deep learning \cite[p. 334]{goodfellow2016deep}}
+	\includegraphics[width=0.6\textwidth]{capitulo2/figuras/an10.png}
+	\caption{Convolución valida 2-D sin kernel volteado
+		\\\textit{Fuente: Extraído de} \protect\cite[p. 334]{goodfellow2016deep}}
 	\label{fig:an10}
 \end{figure}
 

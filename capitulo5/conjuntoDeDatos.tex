@@ -1,0 +1,24 @@
+Existen diversos conjuntos de datos relacionados con el lenguaje ofensivo extraídos de distintas redes o plataformas sociales. Muchos de estos conjuntos se encuentran mayormente en inglés, como el conjunto de datos ``Hate Speech and Offensive Language'' disponible públicamente en Kaggle, mismo que contiene mensajes recopilados de la red social Twitter. Este conjunto de datos alberga 2,458,155 tweets publicados por usuarios que expresan odio.
+
+Encontrar conjuntos de datos en español es un desafío, uno de los pocos conjuntos disponibles es ``Offendes'', enfocado en influencers jóvenes de plataformas sociales como Twitter, Instagram y YouTube. Este corpus recopilado está compuesto por comentarios en español etiquetados manualmente como: ofensivos, dirigidos a un individuo específico (OFP); ofensivos, dirigidos a grupos basados en etnia, género, orientación sexual, ideología política, creencia religiosa u otras características comunes (OFG); no ofensivos pero con lenguaje grosero (NOE), y finalmente, no ofensivos (NO). El conjunto de datos público de Offendes contiene 30,416 muestras seleccionadas el total usado en la tarea ``MeOffendes'' en el IberLEF 2021. 
+
+El IberLEF (Iberian Languages Evaluation Forum) es un espacio de evaluación que se enfoca en los desafíos y avances del procesamiento de lenguaje natural para las lenguas ibéricas, incluyendo el español, portugués y otras lenguas regionales como el catalán y el gallego.
+
+Offendes se divide en tres subconjuntos: entrenamiento con 16,710 muestras, desarrollo con 100 muestras y prueba con 13,606. Para un detalle más específico sobre la cantidad de datos etiquetados, ver la tabla \ref{tbl:13}. Este conjunto de datos se usará con el fin de ayudar en el etiquetado de los datos recopilados y además para tener más variabilidad en los datos.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Label} & \textbf{Training} & \textbf{Development} & \textbf{Test} \\ \hline
+		NO & 13212 & 64 & 9651 \\ 
+		NOE & 1235 & 22 & 2340 \\ 
+		OFP & 2051 & 10 & 1404 \\ 
+		OFG & 212 & 4 & 211 \\ \hline
+		\textbf{Total} & 16710 & 100 & 13606 \\ \hline
+	\end{tabular}
+	\caption{Distribucion del conjunto de datos OffendES
+		\\\textit{Fuente: Elaboracion Propia}}
+	\label{tbl:13}
+\end{table}
+

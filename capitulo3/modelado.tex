@@ -1,0 +1,17 @@
+En esta sección, se explorará cómo transformar los datos recopilados en una solución efectiva para un proyecto de procesamiento de lenguaje natural. Con datos iniciales limitados, se comienza con métodos sencillos y reglas básicas, incrementando gradualmente la complejidad a medida que se obtienen más datos y una mejor comprensión del problema. Algunos enfoques que pueden ayudar en la construcción de un modelo efectivo son los siguientes:
+
+\begin{itemize}
+
+\item Construcción de heurísticas: Al principio las heurísticas y las expresiones regulares pueden ser herramientas clave para abordar tareas específicas en las primeras etapas del desarrollo del modelo, permitiendo la extracción de información relevante incluso sin contar con grandes volúmenes de datos de entrenamiento. proporcionando una base sólida mientras se recopilan suficientes datos para aplicar técnicas más avanzadas de aprendizaje automático. Por ejemplo en la clasificación de texto ofensivo si se identifica ciertas palabras clave como ofensivas se pueden clasificar directamente como ofensivas en lugar de enviarlas al modelo, o en cambio, se pueden crear características a partir de estas heurísticas para entrenar el modelo.
+
+\item Ensamble y Apilamiento: En el ámbito del aprendizaje automático, una práctica común es utilizar una colección de modelos en lugar de depender de un solo modelo para abordar diferentes aspectos del problema de predicción. Existen dos enfoques principales para lograr esto. El primero es el apilamiento de modelos, donde la salida de un modelo se utiliza como entrada para otro, siguiendo una secuencia hasta obtener una predicción final. El segundo enfoque es el ensamble de modelos, que consiste en combinar las predicciones de múltiples modelos y realizar una predicción final conjunta. El uso de múltiples modelos para la resolución de algún problema puede mejorar de manera significativa una predicción, es un camino que se debe tomar en cuenta.
+
+\item Mejor Ingeniería de Características: Un buen proceso de ingeniería de características puede mejorar significativamente el rendimiento del modelo. Cuando hay muchas características disponibles, la selección de las más relevantes ayuda a optimizar el modelo.
+
+\item Aprendizaje por transferencia: El aprendizaje por transferencia permite que un modelo nuevo adquiera conocimientos de un modelo grande y bien entrenado, lo que mejora su comprensión del lenguaje y del problema específico. Esto es similar a cómo un profesor transmite conocimientos a un estudiante. Esta técnica facilita las tareas posteriores, especialmente cuando se dispone de un conjunto de datos limitado, y suele ofrecer mejores resultados que comenzar a entrenar un modelo desde cero con una inicialización aleatoria.
+
+\item Reaplicación de Heurísticas: Dado que los modelos de aprendizaje automático no son perfectos y cometen errores, es posible revisar estos errores al final del proceso de modelado para identificar patrones comunes y corregirlos mediante heurísticas. Además, se puede utilizar conocimiento específico del dominio, que no se captura automáticamente en los datos, para mejorar las predicciones del modelo.
+
+\end{itemize}
+
+

@@ -1,24 +1,33 @@
+
 \newenvironment{dedication}
 {
-\pagestyle{empty}
-  \vspace*{6.5cm}
-  {\chapter*{Dedicatoria}} 
-\addcontentsline{toc}{chapter}{Dedicatoria}
- {\large{}}
-  \vspace{0.5cm}
- \begin{flushright}
-\itshape}
-{\end{flushright}
-%\clearpage
+	\pagestyle{empty}
+	\vspace*{6.5cm}
+	\begin{center}
+		{\chapter*{Dedicatoria}}
+		%\addcontentsline{toc}{chapter}{Dedicatoria}
+		\vspace{0.5cm}
+		
+	\end{center}
+	\fdedicatoria
+	\itshape
 }
-\newenvironment{acknowledgements}
-{\pagestyle{empty}
-\vspace*{1.5cm}
-{\chapter*{Agradecimientos}}
-\addcontentsline{toc}{chapter}{Reconocimientos}
-\vspace{0.5cm}}
 
-%{}
+\newenvironment{acknowledgements}
+{
+	\pagestyle{empty}
+	\vspace*{1.5cm}
+	\begin{center}
+		{\chapter*{Agradecimientos}}
+		%\addcontentsline{toc}{chapter}{Agradecimientos}
+		\vspace{0.5cm}
+	\end{center}
+	\fdedicatoria
+	\itshape
+}
+{
+	%\clearpage
+}
 
 %ABSTRACT - SPANISH
 %
@@ -26,19 +35,23 @@
 %the top of the page. The abstract itself appears in a quote environment,
 %i.e. tabbed in at both sides, and on its own page.
 
- \newenvironment{abstract} {
+\newenvironment{abstract}
+{
 	\pagestyle{empty}
+	\vspace*{1.5cm}
 	\begin{center}
-		\vspace*{1.5cm}
-		{\chapter*{Resumen}}
-		\addcontentsline{toc}{chapter}{Resumen}
+		{\chapter*{Ficha Resumen}}
+		%\addcontentsline{toc}{chapter}{Ficha Resumen}
+		\vspace{0.5cm}
 	\end{center}
-	\vspace{0.5cm}} 
- 
+	%\clearpage
+}
 
+% Formato de Títulos
+\titleformat{\chapter}[block]
+{\normalfont\huge\bfseries\filcenter} % Cambia \huge si quieres ajustar el tamaño
+{Capítulo \thechapter:}
+{12pt}
+{\huge} % Cambia \huge si quieres ajustar el tamaño del título
 
-
-\titleformat{\chapter}[display]   
-{\normalfont\Large\bfseries}{\chaptertitlename\ \thechapter}{12pt}{\Large}   
-\titlespacing*{\chapter}{0pt}{-10pt}{0pt}
-
+\titlespacing*{\chapter}{0pt}{-10pt}{40pt}
